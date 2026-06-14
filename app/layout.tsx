@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Cormorant } from 'next/font/google'
-import Navbar from './components/Navbar'
+import ConditionalNavbar from './components/ConditionalNavbar'
 
 const inter = Inter({ subsets: ['latin'] })
 const cormorant = Cormorant({
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${cormorant.className}`}>
-        <Navbar />
+        <ConditionalNavbar />
         <div className="flex-1">
           {children}
         </div>
