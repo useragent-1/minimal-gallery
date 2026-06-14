@@ -1,9 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server'
-import galleryConfig from '@/app/config/gallery.json'
-import type { GalleryConfig } from '@/app/types/config'
-
-const config = galleryConfig as GalleryConfig
+import { NextResponse } from 'next/server'
+import { loadGalleryConfig } from '@/app/lib/storage'
 
 export async function GET() {
-  return NextResponse.json(config)
+  try {
+    const config = await loadGalleryConfig()
+    return NextResponse.json(config)
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message }, { status: 500 })
+  }
 }

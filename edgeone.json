@@ -3,9 +3,14 @@
   "framework": "nextjs",
   "build": {
     "command": "npm run build",
-    "output": ".next"
+    "output": ".next/standalone"
   },
   "env": {
     "ADMIN_PASSWORD": "@ADMIN_PASSWORD"
+  },
+  "bindings": {
+    "kv": {
+      "GALLERY_KV": "gallery"
+    }
   }
 }

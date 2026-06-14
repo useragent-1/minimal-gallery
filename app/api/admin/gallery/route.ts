@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, readFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
-import galleryConfig from '@/app/config/gallery.json'
+import { loadGalleryConfig, saveGalleryConfig } from '@/app/lib/storage'
 import type { GalleryConfig, Album, Photo } from '@/app/types/config'
 
-const CONFIG_PATH = path.join(process.cwd(), 'app', 'config', 'gallery.json')
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'images', 'gallery')
-
-// Helper: check admin auth
 function checkAuth(req: NextRequest): boolean {
   const password = process.env.ADMIN_PASSWORD || 'admin123'
   const authHeader = req.headers.get('authorization')
@@ -16,27 +9,12 @@ function checkAuth(req: NextRequest): boolean {
   return authHeader.slice(7) === password
 }
 
-// Helper: read current config from file
-async function readConfig(): Promise<GalleryConfig> {
-  try {
-    const raw = await readFile(CONFIG_PATH, 'utf-8')
-    return JSON.parse(raw) as GalleryConfig
-  } catch {
-    return JSON.parse(JSON.stringify(galleryConfig)) as GalleryConfig
-  }
-}
-
-// Helper: save config to file
-async function saveConfig(config: GalleryConfig): Promise<void> {
-  await writeFile(CONFIG_PATH, JSON.stringify(config, null, 2), 'utf-8')
-}
-
 // GET /api/admin/gallery - Get full config for admin
 export async function GET(req: NextRequest) {
   if (!checkAuth(req)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  const config = await readConfig()
+  const config = await loadGalleryConfig()
   return NextResponse.json(config)
 }
 
@@ -48,7 +26,7 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json()
   const { action } = body
-  const config = await readConfig()
+  const config = await loadGalleryConfig()
 
   switch (action) {
     case 'createCategory': {
@@ -60,9 +38,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Category already exists' }, { status: 409 })
       }
       config.categories[key] = { title, description: description || '', detail: detail || '', albums: [] }
-      await saveConfig(config)
-      const dir = path.join(UPLOAD_DIR, key)
-      if (!existsSync(dir)) await mkdir(dir, { recursive: true })
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true, key })
     }
 
@@ -74,7 +50,7 @@ export async function POST(req: NextRequest) {
       if (title !== undefined) config.categories[key].title = title
       if (description !== undefined) config.categories[key].description = description
       if (detail !== undefined) config.categories[key].detail = detail
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
 
@@ -84,7 +60,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: 'Category not found' }, { status: 404 })
       }
       delete config.categories[key]
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
 
@@ -107,7 +83,7 @@ export async function POST(req: NextRequest) {
         photos: []
       }
       config.categories[categoryKey].albums.push(album)
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true, album })
     }
 
@@ -125,7 +101,7 @@ export async function POST(req: NextRequest) {
       if (detail !== undefined) album.detail = detail
       if (coverImage !== undefined) album.coverImage = coverImage
       album.photoCount = album.photos.length
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
 
@@ -137,7 +113,7 @@ export async function POST(req: NextRequest) {
       const cat = config.categories[categoryKey]
       if (!cat) return NextResponse.json({ error: 'Category not found' }, { status: 404 })
       cat.albums = cat.albums.filter(a => a.id !== albumId)
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
 
@@ -159,7 +135,7 @@ export async function POST(req: NextRequest) {
       album.photos.push(photo)
       album.photoCount = album.photos.length
       if (!album.coverImage) album.coverImage = url
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true, photo })
     }
 
@@ -174,7 +150,7 @@ export async function POST(req: NextRequest) {
       if (title !== undefined) photo.title = title
       if (description !== undefined) photo.description = description
       if (url !== undefined) photo.url = url
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
 
@@ -186,7 +162,7 @@ export async function POST(req: NextRequest) {
       if (!album) return NextResponse.json({ error: 'Album not found' }, { status: 404 })
       album.photos = album.photos.filter(p => p.id !== photoId)
       album.photoCount = album.photos.length
-      await saveConfig(config)
+      await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
 

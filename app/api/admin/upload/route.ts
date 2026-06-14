@@ -1,9 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import { existsSync } from 'fs'
-import path from 'path'
-
-const UPLOAD_DIR = path.join(process.cwd(), 'public', 'images', 'gallery')
+import { uploadImage } from '@/app/lib/storage'
 
 export async function POST(req: NextRequest) {
   const password = process.env.ADMIN_PASSWORD || 'admin123'
@@ -24,17 +20,12 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'categoryKey and albumId required' }, { status: 400 })
   }
 
-  // Create directory
-  const dir = path.join(UPLOAD_DIR, categoryKey, albumId)
-  if (!existsSync(dir)) await mkdir(dir, { recursive: true })
-
-  // Save file
   const ext = file.name.split('.').pop() || 'jpg'
   const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`
-  const filepath = path.join(dir, filename)
-  const bytes = await file.arrayBuffer()
-  await writeFile(filepath, Buffer.from(bytes))
+  const filePath = `gallery/${categoryKey}/${albumId}/${filename}`
 
-  const url = `/images/gallery/${categoryKey}/${albumId}/${filename}`
+  const bytes = await file.arrayBuffer()
+  const url = await uploadImage(bytes, filePath, file.type)
+
   return NextResponse.json({ success: true, url, filename })
 }
