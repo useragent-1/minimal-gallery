@@ -1,27 +1,28 @@
-import { Metadata } from 'next'
+'use client'
+
+import { useState, useEffect } from 'react'
 import GalleryContent from './GalleryContent'
-import { getCategoryInfo, getAllCategories } from '@/app/utils/config'
-
-// Generate static params
-export async function generateStaticParams() {
-  const categories = getAllCategories()
-  return categories.map((category) => ({
-    category: category,
-  }))
-}
-
-// Generate metadata
-export async function generateMetadata({ params }: { params: { category: string } }): Promise<Metadata> {
-  const info = getCategoryInfo(params.category) || { title: 'Gallery', description: 'Photo Gallery' }
-  
-  return {
-    title: `${info.title} - Gallery`,
-    description: info.description,
-  }
-}
+import { fetchCategory } from '@/app/utils/api'
 
 export default function CategoryPage({ params }: { params: { category: string } }) {
-  const info = getCategoryInfo(params.category) || { title: 'Gallery', description: 'Photo Gallery' }
+  const { category } = params
+  const [info, setInfo] = useState<{ title: string; description: string } | null>(null)
+  const [loading, setLoading] = useState(true)
 
-  return <GalleryContent category={params.category} info={info} />
-} 
+  useEffect(() => {
+    fetchCategory(category)
+      .then(data => setInfo({ title: data.title, description: data.description }))
+      .catch(() => setInfo({ title: 'Gallery', description: 'Photo Gallery' }))
+      .finally(() => setLoading(false))
+  }, [category])
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-pulse text-gray-400">Loading...</div>
+      </div>
+    )
+  }
+
+  return <GalleryContent category={category} info={info || { title: 'Gallery', description: '' }} />
+}

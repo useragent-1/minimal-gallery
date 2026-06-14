@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Footer from '@/app/components/Footer'
 import { Cormorant } from 'next/font/google'
@@ -10,6 +10,7 @@ import MixedRow from '@/app/components/gallery/MixedRow'
 import TwoEqualRow from '@/app/components/gallery/TwoEqualRow'
 import TwoUnequalRow from '@/app/components/gallery/TwoUnequalRow'
 import { getAlbumsByCategory } from '@/app/utils/config'
+import { fetchCategory } from '@/app/utils/api'
 import { Album } from '@/app/types/config'
 import Link from 'next/link'
 
@@ -47,11 +48,13 @@ export default function GalleryContent({ category, info }: GalleryContentProps) 
   })
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentLayout, setCurrentLayout] = useState<'staggered' | 'center' | 'symmetric'>('staggered')
-  
-  // Get album data from config
-  const albums = useMemo(() => {
-    const albums = getAlbumsByCategory(category)
-    return albums;
+  const [albums, setAlbums] = useState<Album[]>([])
+
+  // Fetch album data from API
+  useEffect(() => {
+    fetchCategory(category)
+      .then(data => setAlbums(data.albums || []))
+      .catch(() => setAlbums([]))
   }, [category])
 
   // Generate random layouts

@@ -1,0 +1,11 @@
+{
+  "name": "minimal-gallery",
+  "framework": "nextjs",
+  "build": {
+    "command": "npm run build",
+    "output": ".next"
+  },
+  "env": {
+    "ADMIN_PASSWORD": "@ADMIN_PASSWORD"
+  }
+}

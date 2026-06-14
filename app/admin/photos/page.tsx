@@ -1,0 +1,274 @@
+'use client'
+
+import { useEffect, useState, useRef } from 'react'
+import { adminGetGallery, adminFetch, adminUploadImage } from '@/app/utils/api'
+import type { GalleryConfig, Album } from '@/app/types/config'
+import { Plus, Pencil, Trash2, X, Upload, Loader2 } from 'lucide-react'
+
+export default function PhotosPage() {
+  const [config, setConfig] = useState<GalleryConfig | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedAlbum, setSelectedAlbum] = useState('')
+  const [showUpload, setShowUpload] = useState(false)
+  const [showEdit, setShowEdit] = useState(false)
+  const [editingPhoto, setEditingPhoto] = useState<{ catKey: string; albumId: string; photo: any } | null>(null)
+  const [editForm, setEditForm] = useState({ title: '', description: '', url: '' })
+  const [uploading, setUploading] = useState(false)
+  const [uploadFiles, setUploadFiles] = useState<File[]>([])
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const load = () => adminGetGallery().then(setConfig).catch(() => {})
+  useEffect(() => { load() }, [])
+
+  const categoryKeys = config ? Object.keys(config.categories) : []
+  const albums: { catKey: string; album: Album }[] = []
+  if (config) {
+    const catKeys = selectedCategory ? [selectedCategory] : Object.keys(config.categories)
+    for (const key of catKeys) {
+      for (const album of (config.categories[key]?.albums || [])) {
+        if (!selectedAlbum || album.id === selectedAlbum) {
+          albums.push({ catKey: key, album })
+        }
+      }
+    }
+  }
+
+  const allPhotos: { catKey: string; albumId: string; albumTitle: string; photo: any }[] = []
+  for (const { catKey, album } of albums) {
+    for (const photo of (album.photos || [])) {
+      allPhotos.push({ catKey, albumId: album.id, albumTitle: album.title, photo })
+    }
+  }
+
+  const openEdit = (catKey: string, albumId: string, photo: any) => {
+    setEditingPhoto({ catKey, albumId, photo })
+    setEditForm({ title: photo.title, description: photo.description, url: photo.url })
+    setShowEdit(true)
+  }
+
+  const handleEditSave = async () => {
+    if (!editingPhoto) return
+    await adminFetch('updatePhoto', {
+      categoryKey: editingPhoto.catKey,
+      albumId: editingPhoto.albumId,
+      photoId: editingPhoto.photo.id,
+      title: editForm.title,
+      description: editForm.description,
+      url: editForm.url,
+    })
+    setShowEdit(false)
+    load()
+  }
+
+  const handleDelete = async (catKey: string, albumId: string, photoId: string) => {
+    if (!confirm('Delete this photo?')) return
+    await adminFetch('deletePhoto', { categoryKey: catKey, albumId, photoId })
+    load()
+  }
+
+  const handleUpload = async () => {
+    if (!selectedCategory || !selectedAlbum || uploadFiles.length === 0) return
+    setUploading(true)
+    try {
+      for (const file of uploadFiles) {
+        const result = await adminUploadImage(file, selectedCategory, selectedAlbum)
+        await adminFetch('addPhoto', {
+          categoryKey: selectedCategory,
+          albumId: selectedAlbum,
+          url: result.url,
+          title: file.name.replace(/\.[^.]+$/, ''),
+          description: '',
+        })
+      }
+      setShowUpload(false)
+      setUploadFiles([])
+      load()
+    } catch (e) {
+      alert('Upload failed: ' + (e as Error).message)
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-semibold text-gray-900">Photos</h1>
+        <button
+          onClick={() => setShowUpload(true)}
+          disabled={!selectedCategory || !selectedAlbum}
+          className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm disabled:opacity-50"
+        >
+          <Upload size={16} /> Upload Photos
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="flex gap-3 mb-6">
+        <select
+          value={selectedCategory}
+          onChange={e => { setSelectedCategory(e.target.value); setSelectedAlbum('') }}
+          className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
+        >
+          <option value="">All Categories</option>
+          {categoryKeys.map(key => (
+            <option key={key} value={key}>{config!.categories[key].title}</option>
+          ))}
+        </select>
+        <select
+          value={selectedAlbum}
+          onChange={e => setSelectedAlbum(e.target.value)}
+          className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
+          disabled={!selectedCategory}
+        >
+          <option value="">All Albums</option>
+          {selectedCategory && config?.categories[selectedCategory]?.albums?.map(album => (
+            <option key={album.id} value={album.id}>{album.title}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Photo grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {allPhotos.length === 0 && (
+          <div className="col-span-full p-8 text-center text-gray-400 bg-white rounded-xl">No photos found</div>
+        )}
+        {allPhotos.map(({ catKey, albumId, albumTitle, photo }) => (
+          <div key={photo.id} className="bg-white rounded-xl shadow-sm overflow-hidden group">
+            <div className="aspect-square bg-gray-100 relative">
+              <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                <button onClick={() => openEdit(catKey, albumId, photo)} className="p-2 bg-white rounded-lg text-gray-700 hover:bg-gray-100">
+                  <Pencil size={16} />
+                </button>
+                <button onClick={() => handleDelete(catKey, albumId, photo.id)} className="p-2 bg-white rounded-lg text-red-600 hover:bg-red-50">
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            </div>
+            <div className="p-3">
+              <p className="text-sm font-medium text-gray-900 truncate">{photo.title}</p>
+              <p className="text-xs text-gray-400 truncate">{albumTitle}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Upload Modal */}
+      {showUpload && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-full max-w-md">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold">Upload Photos</h2>
+              <button onClick={() => { setShowUpload(false); setUploadFiles([]) }} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex gap-3">
+                <select
+                  value={selectedCategory}
+                  onChange={e => { setSelectedCategory(e.target.value); setSelectedAlbum('') }}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
+                >
+                  <option value="">Select category</option>
+                  {categoryKeys.map(key => (
+                    <option key={key} value={key}>{config!.categories[key].title}</option>
+                  ))}
+                </select>
+                <select
+                  value={selectedAlbum}
+                  onChange={e => setSelectedAlbum(e.target.value)}
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
+                  disabled={!selectedCategory}
+                >
+                  <option value="">Select album</option>
+                  {selectedCategory && config?.categories[selectedCategory]?.albums?.map(album => (
+                    <option key={album.id} value={album.id}>{album.title}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-gray-400 transition-colors"
+              >
+                <Upload className="mx-auto mb-2 text-gray-400" size={32} />
+                <p className="text-sm text-gray-500">Click to select photos</p>
+                <p className="text-xs text-gray-400 mt-1">Multiple files supported</p>
+              </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept="image/*"
+                className="hidden"
+                onChange={e => setUploadFiles(Array.from(e.target.files || []))}
+              />
+              {uploadFiles.length > 0 && (
+                <div className="text-sm text-gray-600">
+                  {uploadFiles.length} file(s) selected ({(uploadFiles.reduce((s, f) => s + f.size, 0) / 1024 / 1024).toFixed(1)} MB)
+                </div>
+              )}
+            </div>
+
+            <div className="flex gap-3 mt-6">
+              <button onClick={() => { setShowUpload(false); setUploadFiles([]) }} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Cancel</button>
+              <button
+                onClick={handleUpload}
+                disabled={!selectedCategory || !selectedAlbum || uploadFiles.length === 0 || uploading}
+                className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {uploading && <Loader2 size={14} className="animate-spin" />}
+                {uploading ? 'Uploading...' : 'Upload'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Modal */}
+      {showEdit && editingPhoto && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-full max-w-md">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-lg font-semibold">Edit Photo</h2>
+              <button onClick={() => setShowEdit(false)} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
+            </div>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                <input
+                  value={editForm.title}
+                  onChange={e => setEditForm(f => ({ ...f, title: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <textarea
+                  value={editForm.description}
+                  onChange={e => setEditForm(f => ({ ...f, description: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-sm"
+                  rows={2}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">URL</label>
+                <input
+                  value={editForm.url}
+                  onChange={e => setEditForm(f => ({ ...f, url: e.target.value }))}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-sm"
+                />
+                {editForm.url && <img src={editForm.url} alt="Preview" className="mt-2 w-32 h-24 object-cover rounded-lg" />}
+              </div>
+            </div>
+            <div className="flex gap-3 mt-6">
+              <button onClick={() => setShowEdit(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Cancel</button>
+              <button onClick={handleEditSave} className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">Save</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

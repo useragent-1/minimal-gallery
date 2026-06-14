@@ -1,21 +1,22 @@
-import { Metadata } from 'next'
+'use client'
+
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Footer from './components/Footer'
-import { getHomeConfig } from './utils/config'
+import { fetchGalleryData } from './utils/api'
+import type { HomeConfig } from './types/config'
+import homeConfigData from './config/home.json'
 
-export const metadata: Metadata = {
-  title: 'Photography Gallery',
-  description: 'Professional photography services and gallery showcasing nature, urban, travel, and architecture photography.',
-}
+const homeConfig = homeConfigData as HomeConfig
 
 export default function Home() {
-  const config = getHomeConfig()
-  
+  const config = homeConfig
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Background layer */}
       <div className="fixed inset-0 bg-gradient-to-b from-white via-yellow-50 to-yellow-100 opacity-50" />
-      
+
       {/* Content layer */}
       <div className="flex-1 pt-8 md:pt-16 flex items-center relative z-10">
         <div className="container mx-auto px-4">
@@ -28,8 +29,8 @@ export default function Home() {
                 <div className="absolute inset-0 w-full aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform -rotate-3 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                   <div className="w-full h-full overflow-hidden rounded-xl">
                     <img
-                      src={config.featuredCollections[0].image}
-                      alt={config.featuredCollections[0].title}
+                      src={config.featuredCollections[0]?.image}
+                      alt={config.featuredCollections[0]?.title}
                       className="object-cover w-full h-full"
                     />
                   </div>
@@ -38,8 +39,8 @@ export default function Home() {
                 <div className="absolute inset-0 w-full aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform rotate-2 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                   <div className="w-full h-full overflow-hidden rounded-xl">
                     <img
-                      src={config.featuredCollections[1].image}
-                      alt={config.featuredCollections[1].title}
+                      src={config.featuredCollections[1]?.image}
+                      alt={config.featuredCollections[1]?.title}
                       className="object-cover w-full h-full"
                     />
                   </div>
@@ -48,8 +49,8 @@ export default function Home() {
                 <div className="absolute inset-0 w-full aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-3 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform -rotate-1 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                   <div className="w-full h-full overflow-hidden rounded-xl">
                     <img
-                      src={config.featuredCollections[2].image}
-                      alt={config.featuredCollections[2].title}
+                      src={config.featuredCollections[2]?.image}
+                      alt={config.featuredCollections[2]?.title}
                       className="object-cover w-full h-full"
                     />
                   </div>
@@ -63,30 +64,30 @@ export default function Home() {
               <div className="absolute right-0 top-0 w-[90%] aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform -rotate-3 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                 <div className="w-full h-full overflow-hidden rounded-xl">
                   <img
-                    src={config.featuredCollections[0].image}
-                    alt={config.featuredCollections[0].title}
+                    src={config.featuredCollections[0]?.image}
+                    alt={config.featuredCollections[0]?.title}
                     className="object-cover w-full h-full"
                   />
                 </div>
               </div>
-              
+
               {/* Second image */}
               <div className="absolute right-[15%] top-[10%] w-[90%] aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform rotate-2 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                 <div className="w-full h-full overflow-hidden rounded-xl">
                   <img
-                    src={config.featuredCollections[1].image}
-                    alt={config.featuredCollections[1].title}
+                    src={config.featuredCollections[1]?.image}
+                    alt={config.featuredCollections[1]?.title}
                     className="object-cover w-full h-full"
                   />
                 </div>
               </div>
-              
+
               {/* Third image */}
               <div className="absolute right-[30%] top-[20%] w-[90%] aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform -rotate-1 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                 <div className="w-full h-full overflow-hidden rounded-xl">
                   <img
-                    src={config.featuredCollections[2].image}
-                    alt={config.featuredCollections[2].title}
+                    src={config.featuredCollections[2]?.image}
+                    alt={config.featuredCollections[2]?.title}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -96,8 +97,8 @@ export default function Home() {
               <div className="absolute right-[5%] top-[30%] w-[85%] aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform rotate-3 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                 <div className="w-full h-full overflow-hidden rounded-xl">
                   <img
-                    src={config.featuredCollections[0].image}
-                    alt={config.featuredCollections[0].title}
+                    src={config.featuredCollections[0]?.image}
+                    alt={config.featuredCollections[0]?.title}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -107,8 +108,8 @@ export default function Home() {
               <div className="absolute right-[25%] top-[5%] w-[85%] aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform -rotate-2 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                 <div className="w-full h-full overflow-hidden rounded-xl">
                   <img
-                    src={config.featuredCollections[1].image}
-                    alt={config.featuredCollections[1].title}
+                    src={config.featuredCollections[1]?.image}
+                    alt={config.featuredCollections[1]?.title}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -118,8 +119,8 @@ export default function Home() {
               <div className="absolute right-[40%] top-[15%] w-[85%] aspect-[4/3] bg-gradient-to-br from-gray-50 to-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transform rotate-1 hover:scale-[1.02] transition-transform duration-300 rounded-2xl">
                 <div className="w-full h-full overflow-hidden rounded-xl">
                   <img
-                    src={config.featuredCollections[2].image}
-                    alt={config.featuredCollections[2].title}
+                    src={config.featuredCollections[2]?.image}
+                    alt={config.featuredCollections[2]?.title}
                     className="object-cover w-full h-full"
                   />
                 </div>
@@ -135,7 +136,7 @@ export default function Home() {
                 {config.hero.subtitle}
               </p>
               <Link
-                href={config.featuredCollections[0].link}
+                href={config.featuredCollections[0]?.link || '/gallery'}
                 className="inline-flex items-center justify-center px-6 py-3 md:py-2.5 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors w-fit text-base md:text-sm"
               >
                 {config.hero.cta.primary}
