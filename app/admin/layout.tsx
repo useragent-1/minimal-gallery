@@ -33,13 +33,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
+    <div className="h-screen overflow-hidden bg-gray-50 flex">
+      {/* Sidebar - fixed */}
+      <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col z-20">
         <div className="p-6 border-b border-gray-100">
           <h1 className="text-lg font-semibold text-gray-900">Gallery Admin</h1>
         </div>
-        <nav className="flex-1 p-4 space-y-1">
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map(item => {
             const Icon = item.icon
             const active = pathname === item.href
@@ -80,8 +80,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 p-8 overflow-auto">
+      {/* Main Content - scrollable */}
+      <main className="ml-64 flex-1 h-screen overflow-y-auto p-8">
         {children}
       </main>
     </div>
