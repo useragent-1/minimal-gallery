@@ -1,23 +1,65 @@
 /**
  * Storage abstraction layer
- * - EdgeOne deployment: uses KV (global GALLERY_KV) + Blob (@edgeone/pages-blob)
+ * - EdgeOne deployment: uses KV (if available) + Blob (@edgeone/pages-blob)
  * - Local development: uses JSON file + local filesystem
  */
 
 import type { GalleryConfig } from '@/app/types/config'
 
-// Detect EdgeOne runtime
-function isEdgeOne(): boolean {
+// ==================== Runtime Detection ====================
+
+let _isEdgeOne: boolean | null = null
+
+export function isEdgeOne(): boolean {
+  if (_isEdgeOne !== null) return _isEdgeOne
+
+  // Method 1: KV binding is available
   try {
-    return typeof (globalThis as any).GALLERY_KV !== 'undefined'
-  } catch {
-    return false
-  }
+    if (typeof (globalThis as any).GALLERY_KV !== 'undefined') {
+      _isEdgeOne = true
+      return true
+    }
+  } catch {}
+
+  // Method 2: Detect EdgeOne Pages runtime by filesystem path
+  // On EdgeOne Pages, process.cwd() returns /var/user or similar
+  try {
+    const cwd = process.cwd()
+    if (cwd.startsWith('/var/user') || cwd.startsWith('/opt/edgeone')) {
+      _isEdgeOne = true
+      return true
+    }
+  } catch {}
+
+  // Method 3: Check for EdgeOne-specific environment variables
+  try {
+    if (process.env.EDGEONE_VERSION || process.env.EDGEONE_PAGES) {
+      _isEdgeOne = true
+      return true
+    }
+  } catch {}
+
+  _isEdgeOne = false
+  return false
+}
+
+/** Get KV binding if available */
+function getKV(): any {
+  try {
+    const kv = (globalThis as any).GALLERY_KV
+    if (kv && typeof kv.get === 'function') return kv
+  } catch {}
+  return null
 }
 
 // ==================== KV Storage (Gallery Config) ====================
 
 let localConfigCache: GalleryConfig | null = null
+
+async function loadDefaultConfig(): Promise<GalleryConfig> {
+  const mod = await import('@/app/config/gallery.json')
+  return JSON.parse(JSON.stringify(mod.default)) as GalleryConfig
+}
 
 async function loadLocalConfig(): Promise<GalleryConfig> {
   const fs = await import('fs/promises')
@@ -27,9 +69,7 @@ async function loadLocalConfig(): Promise<GalleryConfig> {
     const raw = await fs.readFile(configPath, 'utf-8')
     return JSON.parse(raw) as GalleryConfig
   } catch {
-    // Fallback to imported JSON
-    const mod = await import('@/app/config/gallery.json')
-    return mod.default as GalleryConfig
+    return loadDefaultConfig()
   }
 }
 
@@ -40,16 +80,59 @@ async function saveLocalConfig(config: GalleryConfig): Promise<void> {
   await fs.writeFile(configPath, JSON.stringify(config, null, 2), 'utf-8')
 }
 
+/** Try loading config from Blob storage (for EdgeOne when KV is unavailable) */
+async function loadBlobConfig(): Promise<GalleryConfig | null> {
+  try {
+    const store = await getBlobStore()
+    const data = await store.get('/config/gallery.json')
+    if (data) {
+      const text = typeof data === 'string' ? data : await data.text()
+      return JSON.parse(text) as GalleryConfig
+    }
+  } catch {}
+  return null
+}
+
+/** Save config to Blob storage (for EdgeOne when KV is unavailable) */
+async function saveBlobConfig(config: GalleryConfig): Promise<void> {
+  try {
+    const store = await getBlobStore()
+    await store.set('/config/gallery.json', JSON.stringify(config), {
+      contentType: 'application/json',
+    })
+  } catch (e) {
+    console.error('Failed to save config to Blob:', e)
+  }
+}
+
 export async function loadGalleryConfig(): Promise<GalleryConfig> {
+  // Priority: KV → Blob → local file
   if (isEdgeOne()) {
-    const kv = (globalThis as any).GALLERY_KV
-    const data = await kv.get('gallery_config')
-    if (data) return JSON.parse(data) as GalleryConfig
-    // First time - load from default and save to KV
-    const defaultConfig = (await import('@/app/config/gallery.json')).default as GalleryConfig
-    await kv.put('gallery_config', JSON.stringify(defaultConfig))
+    // Try KV first
+    const kv = getKV()
+    if (kv) {
+      try {
+        const data = await kv.get('gallery_config')
+        if (data) return JSON.parse(data) as GalleryConfig
+        // First time - seed from default config
+        const defaultConfig = await loadDefaultConfig()
+        await kv.put('gallery_config', JSON.stringify(defaultConfig))
+        return defaultConfig
+      } catch (e) {
+        console.warn('KV read failed, trying Blob fallback:', e)
+      }
+    }
+
+    // KV not available, try Blob
+    const blobConfig = await loadBlobConfig()
+    if (blobConfig) return blobConfig
+
+    // Final fallback: use deployed JSON and seed to Blob for future writes
+    const defaultConfig = await loadDefaultConfig()
+    await saveBlobConfig(defaultConfig)
     return defaultConfig
   }
+
   // Local mode
   if (!localConfigCache) {
     localConfigCache = await loadLocalConfig()
@@ -59,10 +142,22 @@ export async function loadGalleryConfig(): Promise<GalleryConfig> {
 
 export async function saveGalleryConfig(config: GalleryConfig): Promise<void> {
   if (isEdgeOne()) {
-    const kv = (globalThis as any).GALLERY_KV
-    await kv.put('gallery_config', JSON.stringify(config))
+    // Try KV first
+    const kv = getKV()
+    if (kv) {
+      try {
+        await kv.put('gallery_config', JSON.stringify(config))
+        return
+      } catch (e) {
+        console.warn('KV write failed, trying Blob fallback:', e)
+      }
+    }
+
+    // KV not available, use Blob
+    await saveBlobConfig(config)
     return
   }
+
   // Local mode
   localConfigCache = config
   await saveLocalConfig(config)
@@ -103,8 +198,12 @@ export async function uploadImage(
 
 export async function deleteImage(imageUrl: string): Promise<void> {
   if (isEdgeOne()) {
-    const store = await getBlobStore()
-    await store.delete(imageUrl)
+    try {
+      const store = await getBlobStore()
+      await store.delete(imageUrl)
+    } catch (e) {
+      console.warn('Blob delete failed:', e)
+    }
     return
   }
   // Local mode - delete from public directory
@@ -119,8 +218,6 @@ export async function deleteImage(imageUrl: string): Promise<void> {
 }
 
 export async function getImageUrl(imageUrl: string): Promise<string> {
-  // On EdgeOne, Blob images are served via a function endpoint
-  // For now, return the URL directly (EdgeOne will serve it)
   if (isEdgeOne()) {
     return `/api/image?key=${encodeURIComponent(imageUrl)}`
   }

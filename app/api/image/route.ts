@@ -1,18 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isEdgeOne } from '@/app/lib/storage'
 
 /**
  * Image serving endpoint for EdgeOne Blob storage
  * On EdgeOne, images stored in Blob are served via this endpoint
  * In local mode, images are served directly from public/ directory
  */
-
-function isEdgeOne(): boolean {
-  try {
-    return typeof (globalThis as any).GALLERY_KV !== 'undefined'
-  } catch {
-    return false
-  }
-}
 
 export async function GET(req: NextRequest) {
   const key = req.nextUrl.searchParams.get('key')
