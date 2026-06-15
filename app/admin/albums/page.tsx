@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { adminGetGallery, adminFetch } from '@/app/utils/api'
 import type { GalleryConfig, Album } from '@/app/types/config'
-import { Plus, Pencil, Trash2, X } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, CheckCircle } from 'lucide-react'
 
 export default function AlbumsPage() {
   const [config, setConfig] = useState<GalleryConfig | null>(null)
@@ -11,6 +11,12 @@ export default function AlbumsPage() {
   const [showModal, setShowModal] = useState(false)
   const [editingAlbum, setEditingAlbum] = useState<{ catKey: string; album: Album } | null>(null)
   const [form, setForm] = useState({ categoryKey: '', id: '', title: '', description: '', detail: '', coverImage: '' })
+  const [toast, setToast] = useState('')
+
+  const showToast = (msg: string) => {
+    setToast(msg)
+    setTimeout(() => setToast(''), 3000)
+  }
 
   const load = () => adminGetGallery().then(setConfig).catch(() => {})
   useEffect(() => { load() }, [])
@@ -59,12 +65,14 @@ export default function AlbumsPage() {
       })
     }
     setShowModal(false)
+    showToast(editingAlbum ? '相册已更新' : '相册已创建')
     load()
   }
 
   const handleDelete = async (catKey: string, albumId: string) => {
     if (!confirm('确定删除此相册及其所有照片吗？')) return
     await adminFetch('deleteAlbum', { categoryKey: catKey, albumId })
+    showToast('相册已删除')
     load()
   }
 
@@ -216,6 +224,13 @@ export default function AlbumsPage() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-6 right-6 z-[60] flex items-center gap-2 bg-green-600 text-white px-4 py-2.5 rounded-lg shadow-lg">
+          <CheckCircle size={16} />
+          <span className="text-sm">{toast}</span>
         </div>
       )}
     </div>

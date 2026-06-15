@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { adminGetGallery, adminFetch, adminUploadImage } from '@/app/utils/api'
 import type { GalleryConfig, Album } from '@/app/types/config'
-import { Plus, Pencil, Trash2, X, Upload, Loader2 } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, Upload, Loader2, CheckCircle } from 'lucide-react'
 
 export default function PhotosPage() {
   const [config, setConfig] = useState<GalleryConfig | null>(null)
@@ -15,7 +15,13 @@ export default function PhotosPage() {
   const [editForm, setEditForm] = useState({ title: '', description: '', url: '' })
   const [uploading, setUploading] = useState(false)
   const [uploadFiles, setUploadFiles] = useState<File[]>([])
+  const [toast, setToast] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const showToast = (msg: string) => {
+    setToast(msg)
+    setTimeout(() => setToast(''), 3000)
+  }
 
   const load = () => adminGetGallery().then(setConfig).catch(() => {})
   useEffect(() => { load() }, [])
@@ -57,12 +63,14 @@ export default function PhotosPage() {
       url: editForm.url,
     })
     setShowEdit(false)
+    showToast('照片已更新')
     load()
   }
 
   const handleDelete = async (catKey: string, albumId: string, photoId: string) => {
     if (!confirm('确定删除此照片吗？')) return
     await adminFetch('deletePhoto', { categoryKey: catKey, albumId, photoId })
+    showToast('照片已删除')
     load()
   }
 
@@ -82,6 +90,7 @@ export default function PhotosPage() {
       }
       setShowUpload(false)
       setUploadFiles([])
+      showToast(`成功上传 ${uploadFiles.length} 张照片`)
       load()
     } catch (e) {
       alert('上传失败：' + (e as Error).message)
@@ -102,6 +111,10 @@ export default function PhotosPage() {
           <Upload size={16} /> 上传照片
         </button>
       </div>
+
+      {(!selectedCategory || !selectedAlbum) && (
+        <p className="text-xs text-gray-400 mb-4">请先从下方选择分类和相册，再点击上传</p>
+      )}
 
       {/* Filters */}
       <div className="flex gap-3 mb-6">
@@ -164,28 +177,11 @@ export default function PhotosPage() {
             </div>
 
             <div className="space-y-3">
-              <div className="flex gap-3">
-                <select
-                  value={selectedCategory}
-                  onChange={e => { setSelectedCategory(e.target.value); setSelectedAlbum('') }}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
-                >
-                  <option value="">选择分类</option>
-                  {categoryKeys.map(key => (
-                    <option key={key} value={key}>{config!.categories[key].title}</option>
-                  ))}
-                </select>
-                <select
-                  value={selectedAlbum}
-                  onChange={e => setSelectedAlbum(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
-                  disabled={!selectedCategory}
-                >
-                  <option value="">选择相册</option>
-                  {selectedCategory && config?.categories[selectedCategory]?.albums?.map(album => (
-                    <option key={album.id} value={album.id}>{album.title}</option>
-                  ))}
-                </select>
+              <div className="bg-gray-50 rounded-lg p-3 text-sm">
+                <span className="text-gray-500">上传至：</span>
+                <span className="font-medium text-gray-800">
+                  {config?.categories[selectedCategory]?.title} / {config?.categories[selectedCategory]?.albums?.find(a => a.id === selectedAlbum)?.title}
+                </span>
               </div>
 
               <div
@@ -267,6 +263,13 @@ export default function PhotosPage() {
               <button onClick={handleEditSave} className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">保存</button>
             </div>
           </div>
+        </div>
+      )}
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-6 right-6 z-[60] flex items-center gap-2 bg-green-600 text-white px-4 py-2.5 rounded-lg shadow-lg">
+          <CheckCircle size={16} />
+          <span className="text-sm">{toast}</span>
         </div>
       )}
     </div>

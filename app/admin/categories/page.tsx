@@ -3,13 +3,19 @@
 import { useEffect, useState } from 'react'
 import { adminGetGallery, adminFetch } from '@/app/utils/api'
 import type { GalleryConfig, Category } from '@/app/types/config'
-import { Plus, Pencil, Trash2, X } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, CheckCircle } from 'lucide-react'
 
 export default function CategoriesPage() {
   const [config, setConfig] = useState<GalleryConfig | null>(null)
   const [showModal, setShowModal] = useState(false)
   const [editingKey, setEditingKey] = useState<string | null>(null)
   const [form, setForm] = useState({ key: '', title: '', description: '', detail: '' })
+  const [toast, setToast] = useState('')
+
+  const showToast = (msg: string) => {
+    setToast(msg)
+    setTimeout(() => setToast(''), 3000)
+  }
 
   const load = () => adminGetGallery().then(setConfig).catch(() => {})
   useEffect(() => { load() }, [])
@@ -43,12 +49,14 @@ export default function CategoriesPage() {
       })
     }
     setShowModal(false)
+    showToast(editingKey ? '分类已更新' : '分类已创建')
     load()
   }
 
   const handleDelete = async (key: string) => {
     if (!confirm(`确定删除分类"${key}"吗？这将同时删除其中所有相册和照片。`)) return
     await adminFetch('deleteCategory', { key })
+    showToast('分类已删除')
     load()
   }
 
@@ -148,6 +156,13 @@ export default function CategoriesPage() {
               </button>
             </div>
           </div>
+        </div>
+      )}
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-6 right-6 z-[60] flex items-center gap-2 bg-green-600 text-white px-4 py-2.5 rounded-lg shadow-lg animate-fade-in">
+          <CheckCircle size={16} />
+          <span className="text-sm">{toast}</span>
         </div>
       )}
     </div>
