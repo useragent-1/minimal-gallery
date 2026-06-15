@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isEdgeOne, getBlobStore } from '@/app/lib/storage'
 
-export const runtime = 'edge'
-
 function getContentTypeFromKey(key: string): string {
   const ext = key.split('.').pop()?.toLowerCase()
   switch (ext) {

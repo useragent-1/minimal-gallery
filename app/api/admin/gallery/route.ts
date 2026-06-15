@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import { loadGalleryConfig, saveGalleryConfig, deleteImage } from '@/app/lib/storage'
 import type { GalleryConfig, Album, Photo } from '@/app/types/config'
 
-export const runtime = 'edge'
-
 function checkAuth(req: NextRequest): boolean {
   const password = process.env.ADMIN_PASSWORD || 'admin123'
   const authHeader = req.headers.get('authorization')

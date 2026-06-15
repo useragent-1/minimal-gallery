@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server'
 import { loadGalleryConfig } from '@/app/lib/storage'
 
-export const runtime = 'edge'
-
 export async function GET() {
   try {
     const config = await loadGalleryConfig()

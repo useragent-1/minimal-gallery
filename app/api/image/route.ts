@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isEdgeOne, getBlobStore } from '@/app/lib/storage'
 
-export const runtime = 'edge'
-
 /**
  * Image serving endpoint for EdgeOne Blob storage
  * On EdgeOne, images stored in Blob are served via this endpoint

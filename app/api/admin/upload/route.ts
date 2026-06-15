@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { uploadImage } from '@/app/lib/storage'
 
-export const runtime = 'edge'
-
 // Allow up to 10MB file uploads
 export const maxDuration = 60
 

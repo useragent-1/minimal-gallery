@@ -93,25 +93,23 @@ async function saveLocalConfig(config: GalleryConfig): Promise<void> {
 
 export async function loadGalleryConfig(): Promise<GalleryConfig> {
   if (isEdgeOne()) {
-    const kv = getKV()
-    if (kv) {
-      try {
-        const data = await kv.get('gallery_config')
-        if (data) {
-          const parsed = JSON.parse(data) as GalleryConfig
-          if (parsed && parsed.categories && Object.keys(parsed.categories).length > 0) {
-            return parsed
-          }
-        }
-        // If config is empty or invalid in KV, reset to default config
-        const defaultConfig = await loadDefaultConfig()
-        await kv.put('gallery_config', JSON.stringify(defaultConfig))
-        return defaultConfig
-      } catch (e) {
-        console.warn('KV read failed:', e)
+    try {
+      const store = await getBlobStore()
+      console.log('[loadGalleryConfig] Fetching config/gallery.json from Blob storage')
+      const data = await store.get('config/gallery.json', { type: 'json', consistency: 'strong' })
+      if (data && data.categories && Object.keys(data.categories).length > 0) {
+        return data as GalleryConfig
       }
+      
+      // If config in Blob is empty/invalid or not found, initialize it with default config
+      console.log('[loadGalleryConfig] Config not found or invalid in Blob. Initializing default config.')
+      const defaultConfig = await loadDefaultConfig()
+      await store.setJSON('config/gallery.json', defaultConfig)
+      return defaultConfig
+    } catch (e: any) {
+      console.warn('Blob config read/write failed:', e)
     }
-    // KV not available, use deployed default config
+    // Fallback to static config
     return loadDefaultConfig()
   }
 
@@ -124,17 +122,14 @@ export async function loadGalleryConfig(): Promise<GalleryConfig> {
 
 export async function saveGalleryConfig(config: GalleryConfig): Promise<void> {
   if (isEdgeOne()) {
-    const kv = getKV()
-    if (kv) {
-      try {
-        await kv.put('gallery_config', JSON.stringify(config))
-        return
-      } catch (e) {
-        console.warn('KV write failed:', e)
-      }
+    try {
+      const store = await getBlobStore()
+      console.log('[saveGalleryConfig] Saving config/gallery.json to Blob storage')
+      await store.setJSON('config/gallery.json', config)
+      return
+    } catch (e: any) {
+      console.warn('Blob config save failed:', e)
     }
-    // KV not available - changes won't persist across restarts
-    console.warn('No KV storage available, config changes will not persist')
     return
   }
 
