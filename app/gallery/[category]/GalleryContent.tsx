@@ -280,21 +280,21 @@ export default function GalleryContent({ category, info }: GalleryContentProps) 
                         className="w-full py-2 px-4 bg-amber-100/80 text-gray-800 rounded-lg hover:bg-amber-100 transition-colors"
                         onClick={() => window.location.href = `/gallery/${category}/${selectedAlbum.id}`}
                       >
-                        View Gallery Details
+                        查看画廊详情
                       </button>
-                      
+
                       <button
                         className="w-full py-2 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                         onClick={handleNextGallery}
                       >
-                        Next Gallery
+                        下一个画廊
                       </button>
 
                       <button
                         className="w-full py-2 px-4 text-gray-500 hover:text-gray-700 transition-colors"
                         onClick={handleClose}
                       >
-                        Close
+                        关闭
                       </button>
                     </div>
                   </motion.div>

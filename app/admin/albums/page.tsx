@@ -63,7 +63,7 @@ export default function AlbumsPage() {
   }
 
   const handleDelete = async (catKey: string, albumId: string) => {
-    if (!confirm('Delete this album and all its photos?')) return
+    if (!confirm('确定删除此相册及其所有照片吗？')) return
     await adminFetch('deleteAlbum', { categoryKey: catKey, albumId })
     load()
   }
@@ -82,13 +82,13 @@ export default function AlbumsPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">Albums</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">相册管理</h1>
         <button
           onClick={openCreate}
           disabled={categoryKeys.length === 0}
           className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm disabled:opacity-50"
         >
-          <Plus size={16} /> New Album
+          <Plus size={16} /> 新建相册
         </button>
       </div>
 
@@ -98,7 +98,7 @@ export default function AlbumsPage() {
           onClick={() => setSelectedCategory('')}
           className={`px-3 py-1.5 rounded-lg text-sm transition-colors ${!selectedCategory ? 'bg-gray-800 text-white' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`}
         >
-          All
+          全部
         </button>
         {categoryKeys.map(key => (
           <button
@@ -114,7 +114,7 @@ export default function AlbumsPage() {
       {/* Album grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {allAlbums.length === 0 && (
-          <div className="col-span-full p-8 text-center text-gray-400 bg-white rounded-xl">No albums found</div>
+          <div className="col-span-full p-8 text-center text-gray-400 bg-white rounded-xl">未找到相册</div>
         )}
         {allAlbums.map(({ catKey, album }) => (
           <div key={`${catKey}-${album.id}`} className="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -122,14 +122,14 @@ export default function AlbumsPage() {
               {album.coverImage ? (
                 <img src={album.coverImage} alt={album.title} className="w-full h-full object-cover" />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-300">No cover</div>
+                <div className="w-full h-full flex items-center justify-center text-gray-300">无封面</div>
               )}
             </div>
             <div className="p-4">
               <p className="font-medium text-gray-900">{album.title}</p>
               <p className="text-sm text-gray-500 mt-1 line-clamp-2">{album.description}</p>
               <div className="flex items-center justify-between mt-3">
-                <span className="text-xs text-gray-400">{album.photos?.length || 0} photos · {catKey}</span>
+                <span className="text-xs text-gray-400">{album.photos?.length || 0} 张照片 · {catKey}</span>
                 <div className="flex gap-1">
                   <button onClick={() => openEdit(catKey, album)} className="p-1.5 text-gray-400 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
                     <Pencil size={14} />
@@ -149,12 +149,12 @@ export default function AlbumsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-md max-h-[90vh] overflow-auto">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">{editingAlbum ? 'Edit Album' : 'New Album'}</h2>
+              <h2 className="text-lg font-semibold">{editingAlbum ? '编辑相册' : '新建相册'}</h2>
               <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">分类</label>
                 <select
                   value={form.categoryKey}
                   onChange={e => setForm(f => ({ ...f, categoryKey: e.target.value }))}
@@ -167,7 +167,7 @@ export default function AlbumsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">标题</label>
                 <input
                   value={form.title}
                   onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
@@ -175,7 +175,7 @@ export default function AlbumsPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">描述</label>
                 <textarea
                   value={form.description}
                   onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
@@ -184,7 +184,7 @@ export default function AlbumsPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Detail</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">详情</label>
                 <textarea
                   value={form.detail}
                   onChange={e => setForm(f => ({ ...f, detail: e.target.value }))}
@@ -193,7 +193,7 @@ export default function AlbumsPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image URL</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">封面图片 URL</label>
                 <input
                   value={form.coverImage}
                   onChange={e => setForm(f => ({ ...f, coverImage: e.target.value }))}
@@ -201,18 +201,18 @@ export default function AlbumsPage() {
                   placeholder="/images/gallery/..."
                 />
                 {form.coverImage && (
-                  <img src={form.coverImage} alt="Cover preview" className="mt-2 w-32 h-20 object-cover rounded-lg" />
+                  <img src={form.coverImage} alt="封面预览" className="mt-2 w-32 h-20 object-cover rounded-lg" />
                 )}
               </div>
             </div>
             <div className="flex gap-3 mt-6">
-              <button onClick={() => setShowModal(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Cancel</button>
+              <button onClick={() => setShowModal(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">取消</button>
               <button
                 onClick={handleSave}
                 disabled={!form.title || !form.categoryKey}
                 className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 disabled:opacity-50"
               >
-                {editingAlbum ? 'Save' : 'Create'}
+                {editingAlbum ? '保存' : '创建'}
               </button>
             </div>
           </div>

@@ -7,10 +7,10 @@ import { isLoggedIn } from '@/app/utils/api'
 import { LayoutDashboard, FolderTree, Image, LogOut, ArrowLeft } from 'lucide-react'
 
 const navItems = [
-  { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-  { name: 'Categories', href: '/admin/categories', icon: FolderTree },
-  { name: 'Albums', href: '/admin/albums', icon: Image },
-  { name: 'Photos', href: '/admin/photos', icon: Image },
+  { name: '仪表盘', href: '/admin/dashboard', icon: LayoutDashboard },
+  { name: '分类', href: '/admin/categories', icon: FolderTree },
+  { name: '相册', href: '/admin/albums', icon: Image },
+  { name: '照片', href: '/admin/photos', icon: Image },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -37,7 +37,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar - fixed */}
       <aside className="fixed left-0 top-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col z-20">
         <div className="p-6 border-b border-gray-100">
-          <h1 className="text-lg font-semibold text-gray-900">Gallery Admin</h1>
+          <h1 className="text-lg font-semibold text-gray-900">画廊管理</h1>
         </div>
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map(item => {
@@ -65,7 +65,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors"
           >
             <ArrowLeft size={18} />
-            Back to Gallery
+            返回画廊
           </Link>
           <button
             onClick={() => {
@@ -75,7 +75,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-gray-100 transition-colors w-full"
           >
             <LogOut size={18} />
-            Logout
+            退出登录
           </button>
         </div>
       </aside>

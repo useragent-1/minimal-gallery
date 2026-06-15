@@ -1,15 +1,15 @@
 {
   "categories": {
     "nature": {
-      "title": "Nature",
-      "description": "Exploring Earth's magnificent landscapes from mountains to oceans.",
-      "detail": "A journey through Earth's most stunning natural landscapes.",
+      "title": "自然风光",
+      "description": "探索地球上从山脉到海洋的壮丽景观。",
+      "detail": "一段穿越地球最壮丽自然景观的旅程。",
       "albums": [
         {
           "id": "nature-1",
-          "title": "Mountain Majesty",
-          "description": "Capturing the majestic beauty of mountain landscapes.",
-          "detail": "Capturing the raw power and beauty of mountain landscapes.",
+          "title": "雄伟山脉",
+          "description": "捕捉山脉景观的壮美。",
+          "detail": "捕捉山脉景观的原始力量与壮美。",
           "coverImage": "/images/gallery/nature/nature_1.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-15",
@@ -17,33 +17,33 @@
             {
               "id": "nature-1-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Mountain Peak",
-              "description": "The majestic mountain peak at sunset"
+              "title": "山峰",
+              "description": "日落时分的壮丽山峰"
             },
             {
               "id": "nature-1-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Mountain Range",
-              "description": "A panoramic view of the mountain range"
+              "title": "山脉",
+              "description": "山脉的全景"
             },
             {
               "id": "nature-1-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Mountain Lake",
-              "description": "A serene lake surrounded by mountains"
+              "title": "山间湖泊",
+              "description": "群山环绕的宁静湖泊"
             },
             {
               "id": "nature-1-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Mountain Trail",
-              "description": "A winding trail through the mountains"
+              "title": "山间小径",
+              "description": "蜿蜒穿过群山的山间小路"
             }
           ]
         },
         {
           "id": "nature-2",
-          "title": "Forest Exploration",
-          "description": "Exploring the magical world of mysterious forests",
+          "title": "森林探索",
+          "description": "探索神秘森林的奇妙世界",
           "coverImage": "/images/gallery/nature/nature_2.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-14",
@@ -51,33 +51,33 @@
             {
               "id": "nature-2-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Forest Path",
-              "description": "A mysterious path through the forest"
+              "title": "森林小径",
+              "description": "一条神秘的森林小路"
             },
             {
               "id": "nature-2-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Ancient Trees",
-              "description": "Majestic ancient trees reaching for the sky"
+              "title": "古树",
+              "description": "高耸入云的壮美古树"
             },
             {
               "id": "nature-2-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Forest Stream",
-              "description": "A crystal clear stream flowing through the forest"
+              "title": "森林溪流",
+              "description": "一条清澈见底的溪流穿过森林"
             },
             {
               "id": "nature-2-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Forest Canopy",
-              "description": "The dense canopy of the forest"
+              "title": "森林树冠",
+              "description": "茂密的森林树冠层"
             }
           ]
         },
         {
           "id": "nature-3",
-          "title": "Ocean Wonders",
-          "description": "Showcasing the vastness and mystery of the ocean",
+          "title": "海洋奇观",
+          "description": "展现海洋的辽阔与神秘",
           "coverImage": "/images/gallery/nature/nature_3.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-13",
@@ -85,33 +85,33 @@
             {
               "id": "nature-3-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Ocean Waves",
-              "description": "Powerful waves crashing on the shore"
+              "title": "海浪",
+              "description": "巨浪拍岸的壮观景象"
             },
             {
               "id": "nature-3-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Coral Reef",
-              "description": "Colorful coral reef under the sea"
+              "title": "珊瑚礁",
+              "description": "海底五彩缤纷的珊瑚礁"
             },
             {
               "id": "nature-3-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Marine Life",
-              "description": "Diverse marine life in the ocean"
+              "title": "海洋生物",
+              "description": "海洋中丰富多彩的生物"
             },
             {
               "id": "nature-3-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Ocean Sunset",
-              "description": "Beautiful sunset over the ocean"
+              "title": "海上日落",
+              "description": "海面上美丽的日落景色"
             }
           ]
         },
         {
           "id": "nature-4",
-          "title": "Sunrise & Sunset",
-          "description": "Capturing the most beautiful moments of the day",
+          "title": "日出与日落",
+          "description": "捕捉一天中最美丽的时刻",
           "coverImage": "/images/gallery/nature/nature_4.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-12",
@@ -119,33 +119,33 @@
             {
               "id": "nature-4-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Morning Sunrise",
-              "description": "The first light of day breaking over the horizon"
+              "title": "晨曦日出",
+              "description": "地平线上破晓的第一缕阳光"
             },
             {
               "id": "nature-4-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Golden Hour",
-              "description": "The magical golden hour light"
+              "title": "黄金时刻",
+              "description": "魔幻的黄金时刻光线"
             },
             {
               "id": "nature-4-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Evening Sunset",
-              "description": "The sun setting behind the mountains"
+              "title": "傍晚日落",
+              "description": "太阳在群山后面缓缓落下"
             },
             {
               "id": "nature-4-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Twilight",
-              "description": "The peaceful twilight hours"
+              "title": "黄昏",
+              "description": "宁静的黄昏时分"
             }
           ]
         },
         {
           "id": "nature-5",
-          "title": "Waterfall Wonders",
-          "description": "Recording the magnificence and power of waterfalls",
+          "title": "瀑布奇观",
+          "description": "记录瀑布的壮丽与磅礴",
           "coverImage": "/images/gallery/nature/nature_5.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-11",
@@ -153,33 +153,33 @@
             {
               "id": "nature-5-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Mighty Falls",
-              "description": "A powerful waterfall cascading down"
+              "title": "磅礴瀑布",
+              "description": "奔腾而下的壮观瀑布"
             },
             {
               "id": "nature-5-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Hidden Falls",
-              "description": "A hidden waterfall in the forest"
+              "title": "隐秘瀑布",
+              "description": "隐藏在森林中的瀑布"
             },
             {
               "id": "nature-5-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Rainbow Falls",
-              "description": "A waterfall creating a rainbow"
+              "title": "彩虹瀑布",
+              "description": "水雾中形成彩虹的瀑布"
             },
             {
               "id": "nature-5-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Misty Falls",
-              "description": "A misty waterfall in the morning"
+              "title": "云雾瀑布",
+              "description": "晨雾中若隐若现的瀑布"
             }
           ]
         },
         {
           "id": "nature-6",
-          "title": "Lake Reflections",
-          "description": "Capturing the tranquility and beauty of lake surfaces",
+          "title": "湖光山色",
+          "description": "捕捉湖面的宁静与美丽",
           "coverImage": "/images/gallery/nature/nature_6.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-10",
@@ -187,33 +187,33 @@
             {
               "id": "nature-6-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Mirror Lake",
-              "description": "Perfect reflections on a still lake"
+              "title": "镜湖",
+              "description": "平静湖面上的完美倒影"
             },
             {
               "id": "nature-6-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Mountain Lake",
-              "description": "A lake surrounded by mountains"
+              "title": "山间湖泊",
+              "description": "群山环绕的湖泊"
             },
             {
               "id": "nature-6-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Lake Sunset",
-              "description": "Sunset colors reflecting on the lake"
+              "title": "湖畔日落",
+              "description": "日落色彩映照在湖面上"
             },
             {
               "id": "nature-6-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Morning Mist",
-              "description": "Morning mist rising from the lake"
+              "title": "晨雾",
+              "description": "清晨湖面上升起的薄雾"
             }
           ]
         },
         {
           "id": "nature-7",
-          "title": "Grassland Scenery",
-          "description": "Showcasing the vastness and vitality of grasslands",
+          "title": "草原风光",
+          "description": "展现草原的辽阔与生机",
           "coverImage": "/images/gallery/nature/nature_7.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-09",
@@ -221,33 +221,33 @@
             {
               "id": "nature-7-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Golden Grass",
-              "description": "Golden grass swaying in the wind"
+              "title": "金色草原",
+              "description": "金色牧草在风中摇曳"
             },
             {
               "id": "nature-7-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Wildflowers",
-              "description": "Colorful wildflowers in the grassland"
+              "title": "野花",
+              "description": "草原上五彩缤纷的野花"
             },
             {
               "id": "nature-7-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Grassland Sunset",
-              "description": "Sunset over the vast grassland"
+              "title": "草原日落",
+              "description": "辽阔草原上的日落景色"
             },
             {
               "id": "nature-7-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Wildlife",
-              "description": "Wildlife in their natural habitat"
+              "title": "野生动物",
+              "description": "自然栖息地中的野生动物"
             }
           ]
         },
         {
           "id": "nature-8",
-          "title": "Desert Wonders",
-          "description": "Exploring the mystery and grandeur of deserts",
+          "title": "沙漠奇观",
+          "description": "探索沙漠的神秘与壮美",
           "coverImage": "/images/gallery/nature/nature_9.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-08",
@@ -255,33 +255,33 @@
             {
               "id": "nature-8-1",
               "url": "/images/gallery/nature/nature_1.jpg",
-              "title": "Sand Dunes",
-              "description": "Majestic sand dunes in the desert"
+              "title": "沙丘",
+              "description": "沙漠中壮美的沙丘"
             },
             {
               "id": "nature-8-2",
               "url": "/images/gallery/nature/nature_2.jpg",
-              "title": "Desert Sunset",
-              "description": "Beautiful sunset over the desert"
+              "title": "沙漠日落",
+              "description": "沙漠上美丽的日落"
             },
             {
               "id": "nature-8-3",
               "url": "/images/gallery/nature/nature_3.jpg",
-              "title": "Oasis",
-              "description": "A peaceful oasis in the desert"
+              "title": "绿洲",
+              "description": "沙漠中宁静的绿洲"
             },
             {
               "id": "nature-8-4",
               "url": "/images/gallery/nature/nature_4.jpg",
-              "title": "Desert Wildlife",
-              "description": "Wildlife adapted to desert life"
+              "title": "沙漠野生动物",
+              "description": "适应沙漠生活的野生动物"
             }
           ]
         },
         {
           "id": "nature-9",
-          "title": "Glacier World",
-          "description": "Recording the purity and magnificence of glaciers",
+          "title": "冰川世界",
+          "description": "记录冰川的纯净与壮丽",
           "coverImage": "/images/gallery/nature/nature_9.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-07",
@@ -289,33 +289,33 @@
             {
               "id": "nature-9-1",
               "url": "/images/gallery/nature/nature_9.jpg",
-              "title": "Ice Caves",
-              "description": "Mysterious ice caves in the glacier"
+              "title": "冰洞",
+              "description": "冰川中神秘的冰洞"
             },
             {
               "id": "nature-9-2",
               "url": "/images/gallery/nature/nature_9.jpg",
-              "title": "Glacier Lake",
-              "description": "A lake formed by glacier melt"
+              "title": "冰川湖",
+              "description": "冰川融水形成的湖泊"
             },
             {
               "id": "nature-9-3",
               "url": "/images/gallery/nature/nature_9.jpg",
-              "title": "Ice Formations",
-              "description": "Unique ice formations in the glacier"
+              "title": "冰层结构",
+              "description": "冰川中独特的冰层结构"
             },
             {
               "id": "nature-9-4",
               "url": "/images/gallery/nature/nature_9.jpg",
-              "title": "Glacier Peaks",
-              "description": "Majestic peaks covered in ice"
+              "title": "冰川山峰",
+              "description": "被冰雪覆盖的壮丽山峰"
             }
           ]
         },
         {
           "id": "nature-10",
-          "title": "Canyon Wonders",
-          "description": "Showcasing the depth and grandeur of canyons",
+          "title": "峡谷奇观",
+          "description": "展现峡谷的深邃与壮阔",
           "coverImage": "/images/gallery/nature/nature_10.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-06",
@@ -323,33 +323,33 @@
             {
               "id": "nature-10-1",
               "url": "/images/gallery/nature/nature_10.jpg",
-              "title": "Grand Canyon",
-              "description": "The magnificent Grand Canyon"
+              "title": "大峡谷",
+              "description": "宏伟的大峡谷"
             },
             {
               "id": "nature-10-2",
               "url": "/images/gallery/nature/nature_10.jpg",
-              "title": "Canyon River",
-              "description": "A river flowing through the canyon"
+              "title": "峡谷河流",
+              "description": "穿过峡谷的河流"
             },
             {
               "id": "nature-10-3",
               "url": "/images/gallery/nature/nature_10.jpg",
-              "title": "Canyon Walls",
-              "description": "Colorful layers of canyon walls"
+              "title": "峡谷岩壁",
+              "description": "色彩斑斓的峡谷岩层"
             },
             {
               "id": "nature-10-4",
               "url": "/images/gallery/nature/nature_10.jpg",
-              "title": "Canyon Sunset",
-              "description": "Sunset casting shadows in the canyon"
+              "title": "峡谷日落",
+              "description": "日落在峡谷中投下阴影"
             }
           ]
         },
         {
           "id": "nature-11",
-          "title": "Rainforest Exploration",
-          "description": "Exploring the mystery and vitality of rainforests",
+          "title": "雨林探索",
+          "description": "探索雨林的神秘与生机",
           "coverImage": "/images/gallery/nature/nature_11.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-05",
@@ -357,33 +357,33 @@
             {
               "id": "nature-11-1",
               "url": "/images/gallery/nature/nature_11.jpg",
-              "title": "Dense Canopy",
-              "description": "The dense canopy of the rainforest"
+              "title": "茂密树冠",
+              "description": "雨林的茂密树冠层"
             },
             {
               "id": "nature-11-2",
               "url": "/images/gallery/nature/nature_11.jpg",
-              "title": "Exotic Plants",
-              "description": "Unique plants found in the rainforest"
+              "title": "奇异植物",
+              "description": "雨林中发现的独特植物"
             },
             {
               "id": "nature-11-3",
               "url": "/images/gallery/nature/nature_11.jpg",
-              "title": "Waterfall",
-              "description": "A waterfall in the rainforest"
+              "title": "瀑布",
+              "description": "雨林中的瀑布"
             },
             {
               "id": "nature-11-4",
               "url": "/images/gallery/nature/nature_11.jpg",
-              "title": "Wildlife",
-              "description": "Diverse wildlife in the rainforest"
+              "title": "野生动物",
+              "description": "雨林中丰富的野生动物"
             }
           ]
         },
         {
           "id": "nature-12",
-          "title": "Polar Scenery",
-          "description": "Recording the purity and grandeur of polar regions",
+          "title": "极地风光",
+          "description": "记录极地地区的纯净与壮丽",
           "coverImage": "/images/gallery/nature/nature_12.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-04",
@@ -391,41 +391,41 @@
             {
               "id": "nature-12-1",
               "url": "/images/gallery/nature/nature_12.jpg",
-              "title": "Icebergs",
-              "description": "Majestic icebergs in polar waters"
+              "title": "冰山",
+              "description": "极地海域中壮美的冰山"
             },
             {
               "id": "nature-12-2",
               "url": "/images/gallery/nature/nature_12.jpg",
-              "title": "Northern Lights",
-              "description": "The magical aurora borealis"
+              "title": "北极光",
+              "description": "神奇的北极光"
             },
             {
               "id": "nature-12-3",
               "url": "/images/gallery/nature/nature_12.jpg",
-              "title": "Polar Wildlife",
-              "description": "Wildlife adapted to polar conditions"
+              "title": "极地野生动物",
+              "description": "适应极地环境的野生动物"
             },
             {
               "id": "nature-12-4",
               "url": "/images/gallery/nature/nature_12.jpg",
-              "title": "Ice Fields",
-              "description": "Vast ice fields in the polar region"
+              "title": "冰原",
+              "description": "极地地区辽阔的冰原"
             }
           ]
         }
       ]
     },
     "urban": {
-      "title": "Urban",
-      "description": "Capturing the vibrant life of modern cities.",
-      "detail": "Exploring the dynamic energy of modern city life.",
+      "title": "城市",
+      "description": "捕捉现代城市的多彩生活。",
+      "detail": "探索现代城市生活的蓬勃活力。",
       "albums": [
         {
           "id": "urban-1",
-          "title": "City Skylines",
-          "description": "Showcasing iconic city skylines worldwide.",
-          "detail": "Showcasing the iconic silhouettes of world cities.",
+          "title": "城市天际线",
+          "description": "展示世界各地标志性的城市天际线。",
+          "detail": "展示世界城市的标志性轮廓。",
           "coverImage": "/images/gallery/urban/urban_1.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-15",
@@ -433,33 +433,33 @@
             {
               "id": "urban-1-1",
               "url": "/images/gallery/urban/urban_1.jpg",
-              "title": "City Skyline",
-              "description": "The magnificent skyline of a modern city"
+              "title": "城市天际线",
+              "description": "现代城市的壮丽天际线"
             },
             {
               "id": "urban-1-2",
               "url": "/images/gallery/urban/urban_2.jpg",
-              "title": "Night City",
-              "description": "The city lights at night"
+              "title": "夜景城市",
+              "description": "夜晚的城市灯光"
             },
             {
               "id": "urban-1-3",
               "url": "/images/gallery/urban/urban_3.jpg",
-              "title": "Urban Sunset",
-              "description": "Sunset over the city"
+              "title": "城市日落",
+              "description": "城市上空的日落"
             },
             {
               "id": "urban-1-4",
               "url": "/images/gallery/urban/urban_4.jpg",
-              "title": "City Architecture",
-              "description": "Modern architectural wonders"
+              "title": "城市建筑",
+              "description": "现代建筑奇迹"
             }
           ]
         },
         {
           "id": "urban-2",
-          "title": "Street Life",
-          "description": "Recording the vibrant street life of the city",
+          "title": "街头生活",
+          "description": "记录城市多彩的街头生活",
           "coverImage": "/images/gallery/urban/urban_2.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-14",
@@ -467,33 +467,33 @@
             {
               "id": "urban-2-1",
               "url": "/images/gallery/urban/urban_1.jpg",
-              "title": "Street Market",
-              "description": "A bustling street market"
+              "title": "街头市场",
+              "description": "热闹的街头集市"
             },
             {
               "id": "urban-2-2",
               "url": "/images/gallery/urban/urban_2.jpg",
-              "title": "Street Performers",
-              "description": "Street performers entertaining the crowd"
+              "title": "街头艺人",
+              "description": "为人群表演的街头艺人"
             },
             {
               "id": "urban-2-3",
               "url": "/images/gallery/urban/urban_3.jpg",
-              "title": "Street Food",
-              "description": "Delicious street food vendors"
+              "title": "街头美食",
+              "description": "美味的街头小吃摊位"
             },
             {
               "id": "urban-2-4",
               "url": "/images/gallery/urban/urban_4.jpg",
-              "title": "Street Art",
-              "description": "Colorful street art and murals"
+              "title": "街头艺术",
+              "description": "五彩缤纷的街头艺术和壁画"
             }
           ]
         },
         {
           "id": "urban-3",
-          "title": "Urban Architecture",
-          "description": "Showcasing the beauty of urban architecture",
+          "title": "城市建筑",
+          "description": "展示城市建筑之美",
           "coverImage": "/images/gallery/urban/urban_5.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-13",
@@ -501,33 +501,33 @@
             {
               "id": "urban-3-1",
               "url": "/images/gallery/urban/urban_1.jpg",
-              "title": "Modern Building",
-              "description": "A stunning modern architectural design"
+              "title": "现代建筑",
+              "description": "令人惊叹的现代建筑设计"
             },
             {
               "id": "urban-3-2",
               "url": "/images/gallery/urban/urban_2.jpg",
-              "title": "Historical Building",
-              "description": "A well-preserved historical building"
+              "title": "历史建筑",
+              "description": "保存完好的历史建筑"
             },
             {
               "id": "urban-3-3",
               "url": "/images/gallery/urban/urban_3.jpg",
-              "title": "Architectural Detail",
-              "description": "Intricate architectural details"
+              "title": "建筑细节",
+              "description": "精致的建筑细节"
             },
             {
               "id": "urban-3-4",
               "url": "/images/gallery/urban/urban_4.jpg",
-              "title": "Building Facade",
-              "description": "The beautiful facade of a building"
+              "title": "建筑立面",
+              "description": "建筑美丽的立面"
             }
           ]
         },
         {
           "id": "urban-4",
-          "title": "City Parks",
-          "description": "Capturing the tranquility of urban parks",
+          "title": "城市公园",
+          "description": "捕捉城市公园的宁静",
           "coverImage": "/images/gallery/urban/urban_6.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-12",
@@ -535,33 +535,33 @@
             {
               "id": "urban-4-1",
               "url": "/images/gallery/urban/urban_1.jpg",
-              "title": "Park Path",
-              "description": "A peaceful path through the park"
+              "title": "公园小径",
+              "description": "一条宁静的公园小路"
             },
             {
               "id": "urban-4-2",
               "url": "/images/gallery/urban/urban_2.jpg",
-              "title": "Park Lake",
-              "description": "A serene lake in the park"
+              "title": "公园湖泊",
+              "description": "公园中宁静的湖泊"
             },
             {
               "id": "urban-4-3",
               "url": "/images/gallery/urban/urban_3.jpg",
-              "title": "Park Garden",
-              "description": "Beautiful flowers in the park"
+              "title": "公园花园",
+              "description": "公园中美丽的花朵"
             },
             {
               "id": "urban-4-4",
               "url": "/images/gallery/urban/urban_4.jpg",
-              "title": "Park Bench",
-              "description": "A quiet spot to rest in the park"
+              "title": "公园长椅",
+              "description": "公园中安静的休憩之处"
             }
           ]
         },
         {
           "id": "urban-5",
-          "title": "Commercial Districts",
-          "description": "Showcasing the prosperity and vitality of cities",
+          "title": "商业区",
+          "description": "展示城市的繁荣与活力",
           "coverImage": "/images/gallery/urban/urban_5.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-11",
@@ -569,33 +569,33 @@
             {
               "id": "urban-5-1",
               "url": "/images/gallery/urban/urban_5.jpg",
-              "title": "Shopping Street",
-              "description": "A vibrant shopping district"
+              "title": "购物街",
+              "description": "繁华的商业购物区"
             },
             {
               "id": "urban-5-2",
               "url": "/images/gallery/urban/urban_5.jpg",
-              "title": "Business Center",
-              "description": "The heart of the business district"
+              "title": "商务中心",
+              "description": "商业区的核心地带"
             },
             {
               "id": "urban-5-3",
               "url": "/images/gallery/urban/urban_5.jpg",
-              "title": "Restaurant Row",
-              "description": "A street lined with restaurants"
+              "title": "美食街",
+              "description": "餐厅林立的街道"
             },
             {
               "id": "urban-5-4",
               "url": "/images/gallery/urban/urban_5.jpg",
-              "title": "Entertainment Zone",
-              "description": "The city's entertainment district"
+              "title": "娱乐区",
+              "description": "城市的娱乐中心区域"
             }
           ]
         },
         {
           "id": "urban-6",
-          "title": "City Squares",
-          "description": "Recording the vitality of urban public spaces",
+          "title": "城市广场",
+          "description": "记录城市公共空间的活力",
           "coverImage": "/images/gallery/urban/urban_6.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-10",
@@ -603,33 +603,33 @@
             {
               "id": "urban-6-1",
               "url": "/images/gallery/urban/urban_6.jpg",
-              "title": "Main Square",
-              "description": "The city's main square"
+              "title": "主广场",
+              "description": "城市的主要广场"
             },
             {
               "id": "urban-6-2",
               "url": "/images/gallery/urban/urban_6.jpg",
-              "title": "Fountain",
-              "description": "A beautiful fountain in the square"
+              "title": "喷泉",
+              "description": "广场中美丽的喷泉"
             },
             {
               "id": "urban-6-3",
               "url": "/images/gallery/urban/urban_6.jpg",
-              "title": "Public Art",
-              "description": "Public art installations in the square"
+              "title": "公共艺术",
+              "description": "广场中的公共艺术装置"
             },
             {
               "id": "urban-6-4",
               "url": "/images/gallery/urban/urban_6.jpg",
-              "title": "Square Events",
-              "description": "Events taking place in the square"
+              "title": "广场活动",
+              "description": "广场上举行的各种活动"
             }
           ]
         },
         {
           "id": "urban-7",
-          "title": "Urban Transportation",
-          "description": "Showcasing the busy scenes of urban transportation",
+          "title": "城市交通",
+          "description": "展示城市交通的繁忙景象",
           "coverImage": "/images/gallery/urban/urban_7.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-09",
@@ -637,33 +637,33 @@
             {
               "id": "urban-7-1",
               "url": "/images/gallery/urban/urban_7.jpg",
-              "title": "Subway Station",
-              "description": "A busy subway station"
+              "title": "地铁站",
+              "description": "繁忙的地铁站"
             },
             {
               "id": "urban-7-2",
               "url": "/images/gallery/urban/urban_7.jpg",
-              "title": "Bus Terminal",
-              "description": "The city's main bus terminal"
+              "title": "公交枢纽",
+              "description": "城市的主要公交枢纽站"
             },
             {
               "id": "urban-7-3",
               "url": "/images/gallery/urban/urban_7.jpg",
-              "title": "Traffic Flow",
-              "description": "The flow of traffic in the city"
+              "title": "车流",
+              "description": "城市中的车流"
             },
             {
               "id": "urban-7-4",
               "url": "/images/gallery/urban/urban_7.jpg",
-              "title": "Bicycle Lane",
-              "description": "A dedicated bicycle lane"
+              "title": "自行车道",
+              "description": "专用的自行车道"
             }
           ]
         },
         {
           "id": "urban-8",
-          "title": "City Skylines",
-          "description": "Recording the beautiful city skylines",
+          "title": "城市天际线",
+          "description": "记录美丽的城市天际线",
           "coverImage": "/images/gallery/urban/urban_8.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-08",
@@ -671,33 +671,33 @@
             {
               "id": "urban-8-1",
               "url": "/images/gallery/urban/urban_8.jpg",
-              "title": "Day Skyline",
-              "description": "The city skyline during the day"
+              "title": "日间天际线",
+              "description": "白天的城市天际线"
             },
             {
               "id": "urban-8-2",
               "url": "/images/gallery/urban/urban_8.jpg",
-              "title": "Night Skyline",
-              "description": "The city skyline at night"
+              "title": "夜间天际线",
+              "description": "夜晚的城市天际线"
             },
             {
               "id": "urban-8-3",
               "url": "/images/gallery/urban/urban_8.jpg",
-              "title": "Sunset View",
-              "description": "The skyline during sunset"
+              "title": "日落景观",
+              "description": "日落时分的城市天际线"
             },
             {
               "id": "urban-8-4",
               "url": "/images/gallery/urban/urban_8.jpg",
-              "title": "Aerial View",
-              "description": "An aerial view of the city"
+              "title": "鸟瞰全景",
+              "description": "城市的鸟瞰全景"
             }
           ]
         },
         {
           "id": "urban-9",
-          "title": "Urban Culture",
-          "description": "Showcasing the cultural characteristics of cities",
+          "title": "城市文化",
+          "description": "展示城市的文化特色",
           "coverImage": "/images/gallery/urban/urban_9.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-07",
@@ -705,33 +705,33 @@
             {
               "id": "urban-9-1",
               "url": "/images/gallery/urban/urban_9.jpg",
-              "title": "Art Gallery",
-              "description": "A contemporary art gallery"
+              "title": "艺术画廊",
+              "description": "当代艺术画廊"
             },
             {
               "id": "urban-9-2",
               "url": "/images/gallery/urban/urban_9.jpg",
-              "title": "Museum",
-              "description": "A city museum"
+              "title": "博物馆",
+              "description": "城市博物馆"
             },
             {
               "id": "urban-9-3",
               "url": "/images/gallery/urban/urban_9.jpg",
-              "title": "Theater",
-              "description": "A historic theater"
+              "title": "剧院",
+              "description": "历史悠久的剧院"
             },
             {
               "id": "urban-9-4",
               "url": "/images/gallery/urban/urban_9.jpg",
-              "title": "Cultural Center",
-              "description": "A modern cultural center"
+              "title": "文化中心",
+              "description": "现代化的文化中心"
             }
           ]
         },
         {
           "id": "urban-10",
-          "title": "City Life",
-          "description": "Recording the daily life of urban residents",
+          "title": "城市生活",
+          "description": "记录城市居民的日常生活",
           "coverImage": "/images/gallery/urban/urban_10.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-06",
@@ -739,33 +739,33 @@
             {
               "id": "urban-10-1",
               "url": "/images/gallery/urban/urban_10.jpg",
-              "title": "Morning Rush",
-              "description": "The morning rush hour"
+              "title": "早高峰",
+              "description": "早晨的高峰时段"
             },
             {
               "id": "urban-10-2",
               "url": "/images/gallery/urban/urban_10.jpg",
-              "title": "Lunch Break",
-              "description": "People on their lunch break"
+              "title": "午休时光",
+              "description": "午休中的人们"
             },
             {
               "id": "urban-10-3",
               "url": "/images/gallery/urban/urban_10.jpg",
-              "title": "Evening Stroll",
-              "description": "An evening stroll in the city"
+              "title": "傍晚漫步",
+              "description": "城市中的傍晚散步"
             },
             {
               "id": "urban-10-4",
               "url": "/images/gallery/urban/urban_10.jpg",
-              "title": "Night Life",
-              "description": "The city's night life"
+              "title": "夜生活",
+              "description": "城市的夜生活"
             }
           ]
         },
         {
           "id": "urban-11",
-          "title": "Urban Changes",
-          "description": "Showcasing the development and changes of cities",
+          "title": "城市变迁",
+          "description": "展示城市的发展与变化",
           "coverImage": "/images/gallery/urban/urban_11.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-05",
@@ -773,33 +773,33 @@
             {
               "id": "urban-11-1",
               "url": "/images/gallery/urban/urban_11.jpg",
-              "title": "Construction",
-              "description": "New construction in the city"
+              "title": "建设工程",
+              "description": "城市中的新建设项目"
             },
             {
               "id": "urban-11-2",
               "url": "/images/gallery/urban/urban_11.jpg",
-              "title": "Renovation",
-              "description": "Historic building renovation"
+              "title": "翻新改造",
+              "description": "历史建筑的翻新工程"
             },
             {
               "id": "urban-11-3",
               "url": "/images/gallery/urban/urban_11.jpg",
-              "title": "Urban Planning",
-              "description": "New urban development"
+              "title": "城市规划",
+              "description": "新的城市开发项目"
             },
             {
               "id": "urban-11-4",
               "url": "/images/gallery/urban/urban_11.jpg",
-              "title": "Modernization",
-              "description": "City modernization projects"
+              "title": "现代化",
+              "description": "城市现代化建设项目"
             }
           ]
         },
         {
           "id": "urban-12",
-          "title": "Urban Memory",
-          "description": "Recording the history and memory of cities",
+          "title": "城市记忆",
+          "description": "记录城市的历史与记忆",
           "coverImage": "/images/gallery/urban/urban_12.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-04",
@@ -807,41 +807,41 @@
             {
               "id": "urban-12-1",
               "url": "/images/gallery/urban/urban_12.jpg",
-              "title": "Historic District",
-              "description": "The city's historic district"
+              "title": "历史街区",
+              "description": "城市的历史街区"
             },
             {
               "id": "urban-12-2",
               "url": "/images/gallery/urban/urban_12.jpg",
-              "title": "Old Buildings",
-              "description": "Preserved historic buildings"
+              "title": "老建筑",
+              "description": "保存完好的历史建筑"
             },
             {
               "id": "urban-12-3",
               "url": "/images/gallery/urban/urban_12.jpg",
-              "title": "Heritage Site",
-              "description": "A UNESCO heritage site"
+              "title": "遗产地",
+              "description": "联合国教科文组织遗产地"
             },
             {
               "id": "urban-12-4",
               "url": "/images/gallery/urban/urban_12.jpg",
-              "title": "City Museum",
-              "description": "A museum preserving city history"
+              "title": "城市博物馆",
+              "description": "保存城市历史的博物馆"
             }
           ]
         }
       ]
     },
     "travel": {
-      "title": "Travel",
-      "description": "Documenting journeys and adventures worldwide.",
-      "detail": "A visual journey through fascinating destinations worldwide.",
+      "title": "旅行",
+      "description": "记录世界各地的旅程与冒险。",
+      "detail": "一段穿越世界各地迷人目的地的视觉之旅。",
       "albums": [
         {
           "id": "travel-1",
-          "title": "World Heritage",
-          "description": "Exploring UNESCO World Heritage sites globally.",
-          "detail": "Discovering the world's most significant cultural treasures.",
+          "title": "世界遗产",
+          "description": "探索全球联合国教科文组织世界遗产地。",
+          "detail": "发现世界上最重要的文化瑰宝。",
           "coverImage": "/images/gallery/travel/travel_1.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-15",
@@ -849,33 +849,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Paris Streets",
-              "description": "The romantic streets of Paris"
+              "title": "巴黎街道",
+              "description": "浪漫的巴黎街头"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Venice Canals",
-              "description": "The beautiful canals of Venice"
+              "title": "威尼斯运河",
+              "description": "美丽的威尼斯运河"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Rome Architecture",
-              "description": "Ancient Roman architecture"
+              "title": "罗马建筑",
+              "description": "古罗马建筑"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Amsterdam",
-              "description": "The charming canals of Amsterdam"
+              "title": "阿姆斯特丹",
+              "description": "迷人的阿姆斯特丹运河"
             }
           ]
         },
         {
           "id": "travel-2",
-          "title": "Asian Adventure",
-          "description": "Exploring the unique charm of Asia",
+          "title": "亚洲探险",
+          "description": "探索亚洲的独特魅力",
           "coverImage": "/images/gallery/travel/travel_2.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-14",
@@ -883,33 +883,33 @@
             {
               "id": "travel-2-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-2-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-2-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-2-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "travel-3",
-          "title": "American Journey",
-          "description": "Discovering the diverse landscapes of America",
+          "title": "美洲之旅",
+          "description": "发现美洲多样的自然风光",
           "coverImage": "/images/gallery/travel/travel_3.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-13",
@@ -917,33 +917,33 @@
             {
               "id": "travel-3-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "City Skyline",
-              "description": "The iconic skyline of an American city"
+              "title": "城市天际线",
+              "description": "美国城市的标志性天际线"
             },
             {
               "id": "travel-3-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "National Park",
-              "description": "Stunning views in a national park"
+              "title": "国家公园",
+              "description": "国家公园中的壮丽景色"
             },
             {
               "id": "travel-3-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Coastal View",
-              "description": "Beautiful coastal scenery"
+              "title": "海岸风光",
+              "description": "美丽的海岸风景"
             },
             {
               "id": "travel-3-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Desert Landscape",
-              "description": "Majestic desert views"
+              "title": "沙漠景观",
+              "description": "壮美的沙漠风光"
             }
           ]
         },
         {
           "id": "travel-4",
-          "title": "African Safari",
-          "description": "Experiencing the wild beauty of Africa",
+          "title": "非洲探险",
+          "description": "体验非洲的原始之美",
           "coverImage": "/images/gallery/travel/travel_4.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-12",
@@ -951,33 +951,33 @@
             {
               "id": "travel-4-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Wildlife",
-              "description": "Majestic wildlife in their natural habitat"
+              "title": "野生动物",
+              "description": "自然栖息地中的壮美野生动物"
             },
             {
               "id": "travel-4-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Safari Sunset",
-              "description": "Beautiful sunset over the savanna"
+              "title": "探险日落",
+              "description": "大草原上美丽的日落"
             },
             {
               "id": "travel-4-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "African Landscape",
-              "description": "Stunning African landscape"
+              "title": "非洲风光",
+              "description": "壮丽的非洲自然风光"
             },
             {
               "id": "travel-4-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Local Culture",
-              "description": "Rich African cultural heritage"
+              "title": "当地文化",
+              "description": "丰富的非洲文化遗产"
             }
           ]
         },
         {
           "id": "travel-5",
-          "title": "Ocean Adventure",
-          "description": "Exploring the wonders of the ocean",
+          "title": "海洋探险",
+          "description": "探索海洋的奇妙世界",
           "coverImage": "/images/gallery/travel/travel_5.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-11",
@@ -985,33 +985,33 @@
             {
               "id": "travel-5-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Coral Reef",
-              "description": "Colorful coral reef under the sea"
+              "title": "珊瑚礁",
+              "description": "海底五彩缤纷的珊瑚礁"
             },
             {
               "id": "travel-5-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Marine Life",
-              "description": "Diverse marine life in the ocean"
+              "title": "海洋生物",
+              "description": "海洋中丰富多彩的生物"
             },
             {
               "id": "travel-5-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Ocean Sunset",
-              "description": "Beautiful sunset over the ocean"
+              "title": "海上日落",
+              "description": "海面上美丽的日落景色"
             },
             {
               "id": "travel-5-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Beach View",
-              "description": "Stunning beach scenery"
+              "title": "海滩风光",
+              "description": "壮丽的海滩景色"
             }
           ]
         },
         {
           "id": "travel-6",
-          "title": "Mountain Expedition",
-          "description": "Conquering the world's highest peaks",
+          "title": "登山探险",
+          "description": "征服世界最高峰",
           "coverImage": "/images/gallery/travel/travel_6.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-10",
@@ -1019,33 +1019,33 @@
             {
               "id": "travel-6-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Mountain Peak",
-              "description": "The summit of a majestic mountain"
+              "title": "山峰",
+              "description": "雄伟山脉的顶峰"
             },
             {
               "id": "travel-6-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Mountain Lake",
-              "description": "A serene lake surrounded by mountains"
+              "title": "山间湖泊",
+              "description": "群山环绕的宁静湖泊"
             },
             {
               "id": "travel-6-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Mountain Trail",
-              "description": "A challenging mountain trail"
+              "title": "山间小径",
+              "description": "充满挑战的山间步道"
             },
             {
               "id": "travel-6-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Mountain Village",
-              "description": "Traditional mountain village"
+              "title": "山间村落",
+              "description": "传统的山间村庄"
             }
           ]
         },
         {
           "id": "travel-7",
-          "title": "Desert Journey",
-          "description": "Exploring the vast and mysterious deserts",
+          "title": "沙漠之旅",
+          "description": "探索广袤而神秘的沙漠",
           "coverImage": "/images/gallery/travel/travel_7.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-09",
@@ -1053,33 +1053,33 @@
             {
               "id": "travel-7-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Sand Dunes",
-              "description": "Majestic sand dunes in the desert"
+              "title": "沙丘",
+              "description": "沙漠中壮美的沙丘"
             },
             {
               "id": "travel-7-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Desert Sunset",
-              "description": "Beautiful sunset over the desert"
+              "title": "沙漠日落",
+              "description": "沙漠上美丽的日落"
             },
             {
               "id": "travel-7-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Oasis",
-              "description": "A peaceful oasis in the desert"
+              "title": "绿洲",
+              "description": "沙漠中宁静的绿洲"
             },
             {
               "id": "travel-7-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Desert Wildlife",
-              "description": "Wildlife adapted to desert life"
+              "title": "沙漠野生动物",
+              "description": "适应沙漠生活的野生动物"
             }
           ]
         },
         {
           "id": "travel-8",
-          "title": "Island Paradise",
-          "description": "Discovering tropical island paradises",
+          "title": "岛屿天堂",
+          "description": "发现热带岛屿的世外桃源",
           "coverImage": "/images/gallery/travel/travel_8.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-08",
@@ -1087,33 +1087,33 @@
             {
               "id": "travel-8-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Beach Paradise",
-              "description": "Pristine beach with crystal clear water"
+              "title": "海滩天堂",
+              "description": "清澈海水中的原始海滩"
             },
             {
               "id": "travel-8-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Island Sunset",
-              "description": "Beautiful sunset over the island"
+              "title": "岛屿日落",
+              "description": "岛屿上美丽的日落"
             },
             {
               "id": "travel-8-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Tropical Forest",
-              "description": "Lush tropical forest on the island"
+              "title": "热带森林",
+              "description": "岛屿上郁郁葱葱的热带森林"
             },
             {
               "id": "travel-8-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Island Culture",
-              "description": "Rich cultural heritage of the island"
+              "title": "岛屿文化",
+              "description": "岛屿丰富的文化遗产"
             }
           ]
         },
         {
           "id": "travel-9",
-          "title": "Arctic Adventure",
-          "description": "Exploring the frozen wonders of the Arctic",
+          "title": "北极探险",
+          "description": "探索北极的冰雪奇观",
           "coverImage": "/images/gallery/travel/travel_9.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-07",
@@ -1121,33 +1121,33 @@
             {
               "id": "travel-9-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Ice Landscape",
-              "description": "Majestic ice formations"
+              "title": "冰雪景观",
+              "description": "壮美的冰层结构"
             },
             {
               "id": "travel-9-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Northern Lights",
-              "description": "Dancing aurora borealis"
+              "title": "北极光",
+              "description": "舞动的北极光"
             },
             {
               "id": "travel-9-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Arctic Wildlife",
-              "description": "Wildlife adapted to Arctic conditions"
+              "title": "北极野生动物",
+              "description": "适应北极环境的野生动物"
             },
             {
               "id": "travel-9-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Ice Cave",
-              "description": "Beautiful ice cave formations"
+              "title": "冰洞",
+              "description": "美丽的冰洞结构"
             }
           ]
         },
         {
           "id": "travel-10",
-          "title": "Tropical Paradise",
-          "description": "Exploring beautiful tropical destinations",
+          "title": "热带天堂",
+          "description": "探索美丽的热带目的地",
           "coverImage": "/images/gallery/travel/travel_10.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-06",
@@ -1155,33 +1155,33 @@
             {
               "id": "travel-10-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Tropical Beach",
-              "description": "Pristine beach with palm trees"
+              "title": "热带海滩",
+              "description": "椰林环绕的原始海滩"
             },
             {
               "id": "travel-10-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Island Resort",
-              "description": "Luxury island resort"
+              "title": "岛屿度假村",
+              "description": "豪华的岛屿度假村"
             },
             {
               "id": "travel-10-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Crystal Waters",
-              "description": "Clear tropical waters"
+              "title": "清澈海水",
+              "description": "清澈见底的热带海水"
             },
             {
               "id": "travel-10-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Local Culture",
-              "description": "Vibrant local culture"
+              "title": "当地文化",
+              "description": "充满活力的当地文化"
             }
           ]
         },
         {
           "id": "travel-11",
-          "title": "Historical Sites",
-          "description": "Visiting ancient historical landmarks",
+          "title": "历史遗迹",
+          "description": "探访古老的历史遗迹",
           "coverImage": "/images/gallery/travel/travel_11.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-05",
@@ -1189,33 +1189,33 @@
             {
               "id": "travel-11-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Ancient Ruins",
-              "description": "Historic ruins"
+              "title": "古代废墟",
+              "description": "历史悠久的遗迹"
             },
             {
               "id": "travel-11-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "Historic Castle",
-              "description": "Medieval castle"
+              "title": "历史城堡",
+              "description": "中世纪城堡"
             },
             {
               "id": "travel-11-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Ancient Temple",
-              "description": "Historic temple"
+              "title": "古老寺庙",
+              "description": "历史悠久的寺庙"
             },
             {
               "id": "travel-11-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Historical Museum",
-              "description": "Museum artifacts"
+              "title": "历史博物馆",
+              "description": "博物馆中的珍贵文物"
             }
           ]
         },
         {
           "id": "travel-12",
-          "title": "Adventure Sports",
-          "description": "Experiencing thrilling adventure sports",
+          "title": "极限运动",
+          "description": "体验惊险刺激的极限运动",
           "coverImage": "/images/gallery/travel/travel_12.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-04",
@@ -1223,41 +1223,41 @@
             {
               "id": "travel-12-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Rock Climbing",
-              "description": "Challenging rock climbing"
+              "title": "攀岩",
+              "description": "充满挑战的攀岩运动"
             },
             {
               "id": "travel-12-2",
               "url": "/images/gallery/travel/travel_2.jpg",
-              "title": "White Water Rafting",
-              "description": "Exciting rafting adventure"
+              "title": "白水漂流",
+              "description": "刺激的漂流冒险"
             },
             {
               "id": "travel-12-3",
               "url": "/images/gallery/travel/travel_3.jpg",
-              "title": "Paragliding",
-              "description": "Soaring through the sky"
+              "title": "滑翔伞",
+              "description": "在天空中翱翔"
             },
             {
               "id": "travel-12-4",
               "url": "/images/gallery/travel/travel_4.jpg",
-              "title": "Mountain Biking",
-              "description": "Thrilling mountain trails"
+              "title": "山地自行车",
+              "description": "刺激的山地越野骑行"
             }
           ]
         }
       ]
     },
     "architecture": {
-      "title": "Architecture",
-      "description": "Showcasing the art of modern building design.",
-      "detail": "Celebrating the artistry of modern architectural design.",
+      "title": "建筑",
+      "description": "展示现代建筑设计的艺术。",
+      "detail": "赞颂现代建筑设计的艺术魅力。",
       "albums": [
         {
           "id": "architecture-1",
-          "title": "Modern Marvels",
-          "description": "Showcasing contemporary architectural masterpieces.",
-          "detail": "Exploring cutting-edge innovations in architectural design.",
+          "title": "现代奇迹",
+          "description": "展示当代建筑杰作。",
+          "detail": "探索建筑设计的前沿创新。",
           "coverImage": "/images/gallery/architecture/architecture_1.jpg",
           "photoCount": 4,
           "createdAt": "2024-03-15",
@@ -1265,33 +1265,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-2",
-          "title": "Classical Architecture",
-          "description": "Recording the eternal charm of classical architecture",
+          "title": "古典建筑",
+          "description": "记录古典建筑的永恒魅力",
           "coverImage": "/images/gallery/architecture/architecture_2.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-14",
@@ -1299,33 +1299,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-3",
-          "title": "Religious Architecture",
-          "description": "Showcasing the sacredness and solemnity of religious architecture",
+          "title": "宗教建筑",
+          "description": "展示宗教建筑的神圣与庄严",
           "coverImage": "/images/gallery/architecture/architecture_3.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-13",
@@ -1333,33 +1333,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-4",
-          "title": "Palace Architecture",
-          "description": "Recording the grandeur and luxury of palace architecture",
+          "title": "宫殿建筑",
+          "description": "记录宫殿建筑的宏伟与奢华",
           "coverImage": "/images/gallery/architecture/architecture_4.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-12",
@@ -1367,33 +1367,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-5",
-          "title": "Garden Architecture",
-          "description": "Showcasing the delicacy and elegance of garden architecture",
+          "title": "园林建筑",
+          "description": "展示园林建筑的精致与优雅",
           "coverImage": "/images/gallery/architecture/architecture_5.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-11",
@@ -1401,33 +1401,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-6",
-          "title": "Residential Architecture",
-          "description": "Recording the characteristics of traditional residences",
+          "title": "民居建筑",
+          "description": "记录传统民居的建筑特色",
           "coverImage": "/images/gallery/architecture/architecture_6.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-10",
@@ -1435,33 +1435,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-7",
-          "title": "Commercial Architecture",
-          "description": "Showcasing the modern feel of commercial architecture",
+          "title": "商业建筑",
+          "description": "展示商业建筑的现代气息",
           "coverImage": "/images/gallery/architecture/architecture_7.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-09",
@@ -1469,33 +1469,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-8",
-          "title": "Cultural Architecture",
-          "description": "Recording the unique charm of cultural architecture",
+          "title": "文化建筑",
+          "description": "记录文化建筑的独特韵味",
           "coverImage": "/images/gallery/architecture/architecture_8.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-08",
@@ -1503,33 +1503,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-9",
-          "title": "Industrial Architecture",
-          "description": "Showcasing the practical aesthetics of industrial architecture",
+          "title": "工业建筑",
+          "description": "展示工业建筑的实用美学",
           "coverImage": "/images/gallery/architecture/architecture_9.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-07",
@@ -1537,33 +1537,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-10",
-          "title": "Bridge Architecture",
-          "description": "Recording the engineering beauty of bridge architecture",
+          "title": "桥梁建筑",
+          "description": "记录桥梁建筑的工程之美",
           "coverImage": "/images/gallery/architecture/architecture_10.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-06",
@@ -1571,33 +1571,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-11",
-          "title": "Landscape Architecture",
-          "description": "Showcasing the natural integration of landscape architecture",
+          "title": "景观建筑",
+          "description": "展示景观建筑与自然的融合",
           "coverImage": "/images/gallery/architecture/architecture_11.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-05",
@@ -1605,33 +1605,33 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         },
         {
           "id": "architecture-12",
-          "title": "Future Architecture",
-          "description": "Exploring future trends in architectural design",
+          "title": "未来建筑",
+          "description": "探索建筑设计的未来趋势",
           "coverImage": "/images/gallery/architecture/architecture_12.jpg",
           "photoCount": 20,
           "createdAt": "2024-03-04",
@@ -1639,26 +1639,26 @@
             {
               "id": "travel-1-1",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Temple Visit",
-              "description": "Ancient temple in Asia"
+              "title": "寺庙之旅",
+              "description": "亚洲的古老寺庙"
             },
             {
               "id": "travel-1-2",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Street Food",
-              "description": "Local street food market"
+              "title": "街头美食",
+              "description": "当地的街头美食市场"
             },
             {
               "id": "travel-1-3",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Traditional Festival",
-              "description": "Colorful traditional festival celebration"
+              "title": "传统节日",
+              "description": "丰富多彩的传统节日庆典"
             },
             {
               "id": "travel-1-4",
               "url": "/images/gallery/travel/travel_1.jpg",
-              "title": "Scenic View",
-              "description": "Breathtaking view of Asian landscape"
+              "title": "风景如画",
+              "description": "亚洲壮丽的自然风光"
             }
           ]
         }

@@ -19,14 +19,14 @@ export default function DashboardPage() {
   }, 0)
 
   const stats = [
-    { label: 'Categories', value: categories.length, icon: FolderTree, color: 'bg-blue-50 text-blue-600' },
-    { label: 'Albums', value: totalAlbums, icon: ImageIcon, color: 'bg-green-50 text-green-600' },
-    { label: 'Photos', value: totalPhotos, icon: Image, color: 'bg-purple-50 text-purple-600' },
+    { label: '分类', value: categories.length, icon: FolderTree, color: 'bg-blue-50 text-blue-600' },
+    { label: '相册', value: totalAlbums, icon: ImageIcon, color: 'bg-green-50 text-green-600' },
+    { label: '照片', value: totalPhotos, icon: Image, color: 'bg-purple-50 text-purple-600' },
   ]
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold text-gray-900 mb-6">Dashboard</h1>
+      <h1 className="text-2xl font-semibold text-gray-900 mb-6">仪表盘</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map(stat => {
@@ -46,7 +46,7 @@ export default function DashboardPage() {
       {config && (
         <div className="mt-8 bg-white rounded-xl shadow-sm">
           <div className="p-6 border-b border-gray-100">
-            <h2 className="text-lg font-semibold text-gray-900">Categories Overview</h2>
+            <h2 className="text-lg font-semibold text-gray-900">分类概览</h2>
           </div>
           <div className="divide-y divide-gray-100">
             {categories.map(key => {
@@ -57,7 +57,7 @@ export default function DashboardPage() {
                     <p className="font-medium text-gray-900">{cat.title}</p>
                     <p className="text-sm text-gray-500">{cat.description}</p>
                   </div>
-                  <span className="text-sm text-gray-400">{cat.albums?.length || 0} albums</span>
+                  <span className="text-sm text-gray-400">{cat.albums?.length || 0} 个相册</span>
                 </div>
               )
             })}

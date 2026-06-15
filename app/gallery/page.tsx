@@ -2,8 +2,8 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Gallery - MOA Garden Rooms',
-  description: 'Browse our collection of garden rooms and studios',
+  title: '画廊 - MOA 花园房间',
+  description: '浏览我们的花园房间和工作室系列',
 }
 
 export default function Gallery() {
@@ -19,8 +19,8 @@ export default function Gallery() {
               className="block bg-gray-100 p-4 rounded-lg hover:bg-gray-200 transition-colors"
             >
               <div className="aspect-w-16 aspect-h-9 bg-gray-300 mb-4"></div>
-              <h2 className="text-xl font-semibold">Gallery Item {item}</h2>
-              <p className="text-gray-600 mt-2">Click to view details</p>
+              <h2 className="text-xl font-semibold">画廊项目 {item}</h2>
+              <p className="text-gray-600 mt-2">点击查看详情</p>
             </Link>
           ))}
         </div>

@@ -132,7 +132,7 @@ export default function AlbumContent({ albumData, category }: AlbumContentProps)
               className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors"
             >
               <ChevronLeft size={20} className="mr-2" />
-              Back to Gallery
+              返回画廊
             </Link>
           </div>
 

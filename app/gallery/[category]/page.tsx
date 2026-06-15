@@ -12,17 +12,17 @@ export default function CategoryPage({ params }: { params: { category: string } 
   useEffect(() => {
     fetchCategory(category)
       .then(data => setInfo({ title: data.title, description: data.description }))
-      .catch(() => setInfo({ title: 'Gallery', description: 'Photo Gallery' }))
+      .catch(() => setInfo({ title: '画廊', description: '照片画廊' }))
       .finally(() => setLoading(false))
   }, [category])
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-pulse text-gray-400">Loading...</div>
+        <div className="animate-pulse text-gray-400">加载中...</div>
       </div>
     )
   }
 
-  return <GalleryContent category={category} info={info || { title: 'Gallery', description: '' }} />
+  return <GalleryContent category={category} info={info || { title: '画廊', description: '' }} />
 }

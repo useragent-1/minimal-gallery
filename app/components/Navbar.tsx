@@ -4,11 +4,11 @@ import Link from 'next/link'
 import { useRef } from 'react'
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Nature', href: '/gallery/nature' },
-  { name: 'Urban', href: '/gallery/urban' },
-  { name: 'Travel', href: '/gallery/travel' },
-  { name: 'Architecture', href: '/gallery/architecture' },
+  { name: '首页', href: '/' },
+  { name: '自然', href: '/gallery/nature' },
+  { name: '城市', href: '/gallery/urban' },
+  { name: '旅行', href: '/gallery/travel' },
+  { name: '建筑', href: '/gallery/architecture' },
 ]
 
 export default function Navbar() {
@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold text-gray-800">
-            Gallery
+            画廊
           </Link>
 
           {/* Navigation Links - Desktop */}

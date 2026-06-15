@@ -33,7 +33,7 @@ export default function TwoColumnRow({ albums, onAlbumClick, info, hideFirstPhot
                   <div className="absolute top-4 right-4 flex gap-2">
                     <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
                       <span className="text-sm font-medium text-gray-700">
-                        {album.photoCount} Photos
+                        {album.photoCount} 张照片
                       </span>
                     </div>
                     <div className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">

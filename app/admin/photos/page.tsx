@@ -61,7 +61,7 @@ export default function PhotosPage() {
   }
 
   const handleDelete = async (catKey: string, albumId: string, photoId: string) => {
-    if (!confirm('Delete this photo?')) return
+    if (!confirm('确定删除此照片吗？')) return
     await adminFetch('deletePhoto', { categoryKey: catKey, albumId, photoId })
     load()
   }
@@ -84,7 +84,7 @@ export default function PhotosPage() {
       setUploadFiles([])
       load()
     } catch (e) {
-      alert('Upload failed: ' + (e as Error).message)
+      alert('上传失败：' + (e as Error).message)
     } finally {
       setUploading(false)
     }
@@ -93,13 +93,13 @@ export default function PhotosPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">Photos</h1>
+        <h1 className="text-2xl font-semibold text-gray-900">照片管理</h1>
         <button
           onClick={() => setShowUpload(true)}
           disabled={!selectedCategory || !selectedAlbum}
           className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm disabled:opacity-50"
         >
-          <Upload size={16} /> Upload Photos
+          <Upload size={16} /> 上传照片
         </button>
       </div>
 
@@ -110,7 +110,7 @@ export default function PhotosPage() {
           onChange={e => { setSelectedCategory(e.target.value); setSelectedAlbum('') }}
           className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
         >
-          <option value="">All Categories</option>
+          <option value="">全部分类</option>
           {categoryKeys.map(key => (
             <option key={key} value={key}>{config!.categories[key].title}</option>
           ))}
@@ -121,7 +121,7 @@ export default function PhotosPage() {
           className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
           disabled={!selectedCategory}
         >
-          <option value="">All Albums</option>
+          <option value="">全部相册</option>
           {selectedCategory && config?.categories[selectedCategory]?.albums?.map(album => (
             <option key={album.id} value={album.id}>{album.title}</option>
           ))}
@@ -131,7 +131,7 @@ export default function PhotosPage() {
       {/* Photo grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {allPhotos.length === 0 && (
-          <div className="col-span-full p-8 text-center text-gray-400 bg-white rounded-xl">No photos found</div>
+          <div className="col-span-full p-8 text-center text-gray-400 bg-white rounded-xl">未找到照片</div>
         )}
         {allPhotos.map(({ catKey, albumId, albumTitle, photo }) => (
           <div key={photo.id} className="bg-white rounded-xl shadow-sm overflow-hidden group">
@@ -159,7 +159,7 @@ export default function PhotosPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-md">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Upload Photos</h2>
+              <h2 className="text-lg font-semibold">上传照片</h2>
               <button onClick={() => { setShowUpload(false); setUploadFiles([]) }} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
             </div>
 
@@ -170,7 +170,7 @@ export default function PhotosPage() {
                   onChange={e => { setSelectedCategory(e.target.value); setSelectedAlbum('') }}
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
                 >
-                  <option value="">Select category</option>
+                  <option value="">选择分类</option>
                   {categoryKeys.map(key => (
                     <option key={key} value={key}>{config!.categories[key].title}</option>
                   ))}
@@ -181,7 +181,7 @@ export default function PhotosPage() {
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
                   disabled={!selectedCategory}
                 >
-                  <option value="">Select album</option>
+                  <option value="">选择相册</option>
                   {selectedCategory && config?.categories[selectedCategory]?.albums?.map(album => (
                     <option key={album.id} value={album.id}>{album.title}</option>
                   ))}
@@ -193,8 +193,8 @@ export default function PhotosPage() {
                 className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-gray-400 transition-colors"
               >
                 <Upload className="mx-auto mb-2 text-gray-400" size={32} />
-                <p className="text-sm text-gray-500">Click to select photos</p>
-                <p className="text-xs text-gray-400 mt-1">Multiple files supported</p>
+                <p className="text-sm text-gray-500">点击选择照片</p>
+                <p className="text-xs text-gray-400 mt-1">支持多文件上传</p>
               </div>
               <input
                 ref={fileInputRef}
@@ -206,20 +206,20 @@ export default function PhotosPage() {
               />
               {uploadFiles.length > 0 && (
                 <div className="text-sm text-gray-600">
-                  {uploadFiles.length} file(s) selected ({(uploadFiles.reduce((s, f) => s + f.size, 0) / 1024 / 1024).toFixed(1)} MB)
+                  已选择 {uploadFiles.length} 个文件（{(uploadFiles.reduce((s, f) => s + f.size, 0) / 1024 / 1024).toFixed(1)} MB）
                 </div>
               )}
             </div>
 
             <div className="flex gap-3 mt-6">
-              <button onClick={() => { setShowUpload(false); setUploadFiles([]) }} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Cancel</button>
+              <button onClick={() => { setShowUpload(false); setUploadFiles([]) }} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">取消</button>
               <button
                 onClick={handleUpload}
                 disabled={!selectedCategory || !selectedAlbum || uploadFiles.length === 0 || uploading}
                 className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {uploading && <Loader2 size={14} className="animate-spin" />}
-                {uploading ? 'Uploading...' : 'Upload'}
+                {uploading ? '上传中...' : '上传'}
               </button>
             </div>
           </div>
@@ -231,12 +231,12 @@ export default function PhotosPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-full max-w-md">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Edit Photo</h2>
+              <h2 className="text-lg font-semibold">编辑照片</h2>
               <button onClick={() => setShowEdit(false)} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">标题</label>
                 <input
                   value={editForm.title}
                   onChange={e => setEditForm(f => ({ ...f, title: e.target.value }))}
@@ -244,7 +244,7 @@ export default function PhotosPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">描述</label>
                 <textarea
                   value={editForm.description}
                   onChange={e => setEditForm(f => ({ ...f, description: e.target.value }))}
@@ -259,12 +259,12 @@ export default function PhotosPage() {
                   onChange={e => setEditForm(f => ({ ...f, url: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-sm"
                 />
-                {editForm.url && <img src={editForm.url} alt="Preview" className="mt-2 w-32 h-24 object-cover rounded-lg" />}
+                {editForm.url && <img src={editForm.url} alt="预览" className="mt-2 w-32 h-24 object-cover rounded-lg" />}
               </div>
             </div>
             <div className="flex gap-3 mt-6">
-              <button onClick={() => setShowEdit(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">Cancel</button>
-              <button onClick={handleEditSave} className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">Save</button>
+              <button onClick={() => setShowEdit(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">取消</button>
+              <button onClick={handleEditSave} className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">保存</button>
             </div>
           </div>
         </div>

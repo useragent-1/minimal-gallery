@@ -1,33 +1,33 @@
 {
   "hero": {
-    "title": "Capturing Life's Beautiful Moments",
-    "subtitle": "Professional Photography Services",
-    "description": "We specialize in capturing the most precious moments in life, creating lasting memories through our lens",
+    "title": "捕捉生活中美好的瞬间",
+    "subtitle": "专业摄影服务",
+    "description": "我们专注于捕捉生活中最珍贵的瞬间，通过镜头创造永恒的记忆",
     "cta": {
-      "primary": "View Gallery",
-      "secondary": "Contact Us"
+      "primary": "浏览画廊",
+      "secondary": "联系我们"
     },
     "backgroundImage": "/images/hero-bg.jpg"
   },
   "featuredCollections": [
     {
       "id": "nature",
-      "title": "Nature",
-      "description": "Exploring the magnificent landscapes of nature",
+      "title": "自然风光",
+      "description": "探索壮丽的自然景观",
       "image": "/images/gallery/nature/nature_1.jpg",
       "link": "/gallery/nature"
     },
     {
       "id": "urban",
-      "title": "Urban Life",
-      "description": "Capturing the vitality of city life",
+      "title": "城市生活",
+      "description": "捕捉城市生活的活力",
       "image": "/images/gallery/urban/urban_1.jpg",
       "link": "/gallery/urban"
     },
     {
       "id": "travel",
-      "title": "Travel",
-      "description": "Recording wonderful moments during journeys",
+      "title": "旅行",
+      "description": "记录旅途中的精彩瞬间",
       "image": "/images/gallery/travel/travel_1.jpg",
       "link": "/gallery/travel"
     }
@@ -35,41 +35,41 @@
   "services": [
     {
       "id": "portrait",
-      "title": "Portrait Photography",
-      "description": "Professional portrait photography services, capturing your unique personality and charm",
+      "title": "人像摄影",
+      "description": "专业人像摄影服务，捕捉您独特的个性与魅力",
       "icon": "camera"
     },
     {
       "id": "wedding",
-      "title": "Wedding Photography",
-      "description": "Recording the most beautiful moments of your special day",
+      "title": "婚礼摄影",
+      "description": "记录您特别日子里最美好的瞬间",
       "icon": "heart"
     },
     {
       "id": "commercial",
-      "title": "Commercial Photography",
-      "description": "High-quality commercial photography services for your business",
+      "title": "商业摄影",
+      "description": "为您的企业提供高品质商业摄影服务",
       "icon": "briefcase"
     }
   ],
   "testimonials": [
     {
       "id": "testimonial-1",
-      "content": "The photos are absolutely amazing! They perfectly captured the special moments of our wedding day.",
-      "author": "Sarah & John",
-      "role": "Newlyweds"
+      "content": "照片太棒了！完美地记录了我们婚礼当天的特别瞬间。",
+      "author": "莎拉和约翰",
+      "role": "新婚夫妇"
     },
     {
       "id": "testimonial-2",
-      "content": "Professional service and excellent results. The photos exceeded our expectations!",
-      "author": "Michael Brown",
-      "role": "Business Owner"
+      "content": "专业的服务，出色的效果。照片超出了我们的期望！",
+      "author": "迈克尔·布朗",
+      "role": "企业主"
     },
     {
       "id": "testimonial-3",
-      "content": "The photographer was very patient and made us feel comfortable. The photos turned out beautifully!",
-      "author": "Emily Davis",
-      "role": "Family Portrait Client"
+      "content": "摄影师非常耐心，让我们感到很放松。照片效果非常好！",
+      "author": "艾米丽·戴维斯",
+      "role": "家庭照客户"
     }
   ]
 } 

@@ -10,8 +10,8 @@ const cormorant = Cormorant({
 })
 
 export const metadata: Metadata = {
-  title: 'Nimmal Gallery',
-  description: 'A collection of visual stories',
+  title: 'Nimmal 画廊',
+  description: '用影像讲述视觉故事',
 }
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="zh">
       <body className={`${inter.className} ${cormorant.className}`}>
         <ConditionalNavbar />
         <div className="flex-1">

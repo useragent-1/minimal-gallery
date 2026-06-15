@@ -9,7 +9,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const info = getCategoryInfo(params.category) || { title: 'Gallery', description: 'Photo Gallery' }
+  const info = getCategoryInfo(params.category) || { title: '画廊', description: '照片画廊' }
   const albums = getAlbumsByCategory(params.category)
   const album = albums.find(a => a.id === params.albumId)
   return getAlbumById(params.category, params.albumId) as any;

@@ -20,13 +20,13 @@ export default function AlbumPage({ params }: { params: { category: string; albu
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-pulse text-gray-400">Loading...</div>
+        <div className="animate-pulse text-gray-400">加载中...</div>
       </div>
     )
   }
 
   if (!albumData) {
-    return <div>Album not found</div>
+    return <div>未找到相册</div>
   }
 
   return <AlbumContent albumData={albumData} category={category} />
