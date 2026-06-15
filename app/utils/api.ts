@@ -94,8 +94,17 @@ export async function adminUploadImage(file: File, categoryKey: string, albumId:
   })
   if (res.status === 401) {
     adminLogout()
-    throw new Error('Session expired')
+    throw new Error('登录已过期')
   }
-  if (!res.ok) throw new Error('Upload failed')
+  if (!res.ok) {
+    let detail = ''
+    try {
+      const errData = await res.json()
+      detail = errData.error || ''
+    } catch {
+      detail = await res.text().catch(() => '')
+    }
+    throw new Error(`上传失败 (${res.status})${detail ? ': ' + detail : ''}`)
+  }
   return res.json()
 }
