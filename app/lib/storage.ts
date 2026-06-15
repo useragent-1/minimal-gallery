@@ -5,25 +5,38 @@
  */
 
 import type { GalleryConfig } from '@/app/types/config'
+import defaultConfigData from '@/app/config/gallery.json'
 
 // ==================== Runtime Detection ====================
 
 export function isEdgeOne(): boolean {
+  // 1. Check if GALLERY_KV is bound globally (Edge Functions runtime)
+  try {
+    if (typeof GALLERY_KV !== 'undefined') {
+      return true
+    }
+  } catch {}
+  
   try {
     if (typeof (globalThis as any).GALLERY_KV !== 'undefined') {
       return true
     }
   } catch {}
 
+  // 2. Check if we have our EdgeOne environment variables configured
+  if (process.env.EDGEONE_PROJECT_ID || process.env.PAGES_BLOB_PROJECT_ID) {
+    return true
+  }
+
+  // 3. Check for standard EdgeOne platform variables
+  if (process.env.EDGEONE_VERSION || process.env.EDGEONE_PAGES || process.env.PAGES_BLOB_DEPLOY_CREDENTIAL) {
+    return true
+  }
+
+  // 4. Check working directory as a fallback
   try {
     const cwd = process.cwd()
-    if (cwd.startsWith('/var/user') || cwd.startsWith('/opt/edgeone')) {
-      return true
-    }
-  } catch {}
-
-  try {
-    if (process.env.EDGEONE_VERSION || process.env.EDGEONE_PAGES) {
+    if (cwd.startsWith('/var/user') || cwd.startsWith('/opt/edgeone') || cwd.includes('edgeone') || cwd.includes('makers')) {
       return true
     }
   } catch {}
@@ -32,6 +45,11 @@ export function isEdgeOne(): boolean {
 }
 
 function getKV(): any {
+  try {
+    if (typeof GALLERY_KV !== 'undefined' && typeof GALLERY_KV.get === 'function') {
+      return GALLERY_KV
+    }
+  } catch {}
   try {
     const kv = (globalThis as any).GALLERY_KV
     if (kv && typeof kv.get === 'function') return kv
@@ -53,8 +71,7 @@ async function getFsAndPath() {
 }
 
 async function loadDefaultConfig(): Promise<GalleryConfig> {
-  const mod = await import('@/app/config/gallery.json')
-  return JSON.parse(JSON.stringify(mod.default)) as GalleryConfig
+  return JSON.parse(JSON.stringify(defaultConfigData)) as GalleryConfig
 }
 
 async function loadLocalConfig(): Promise<GalleryConfig> {
