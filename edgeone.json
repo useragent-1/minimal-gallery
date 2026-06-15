@@ -6,7 +6,8 @@
     "output": ".next/standalone"
   },
   "env": {
-    "ADMIN_PASSWORD": "@ADMIN_PASSWORD"
+    "ADMIN_PASSWORD": "@ADMIN_PASSWORD",
+    "PAGES_BLOB_DEPLOY_CREDENTIAL": "@PAGES_BLOB_DEPLOY_CREDENTIAL"
   },
   "bindings": {
     "kv": {
