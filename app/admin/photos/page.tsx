@@ -15,6 +15,8 @@ export default function PhotosPage() {
   const [editForm, setEditForm] = useState({ title: '', description: '', url: '' })
   const [uploading, setUploading] = useState(false)
   const [uploadFiles, setUploadFiles] = useState<File[]>([])
+  const [uploadCategory, setUploadCategory] = useState('')
+  const [uploadAlbum, setUploadAlbum] = useState('')
   const [toast, setToast] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -74,15 +76,22 @@ export default function PhotosPage() {
     load()
   }
 
+  const openUpload = () => {
+    setUploadCategory('')
+    setUploadAlbum('')
+    setUploadFiles([])
+    setShowUpload(true)
+  }
+
   const handleUpload = async () => {
-    if (!selectedCategory || !selectedAlbum || uploadFiles.length === 0) return
+    if (!uploadCategory || !uploadAlbum || uploadFiles.length === 0) return
     setUploading(true)
     try {
       for (const file of uploadFiles) {
-        const result = await adminUploadImage(file, selectedCategory, selectedAlbum)
+        const result = await adminUploadImage(file, uploadCategory, uploadAlbum)
         await adminFetch('addPhoto', {
-          categoryKey: selectedCategory,
-          albumId: selectedAlbum,
+          categoryKey: uploadCategory,
+          albumId: uploadAlbum,
           url: result.url,
           title: file.name.replace(/\.[^.]+$/, ''),
           description: '',
@@ -104,17 +113,12 @@ export default function PhotosPage() {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">照片管理</h1>
         <button
-          onClick={() => setShowUpload(true)}
-          disabled={!selectedCategory || !selectedAlbum}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm disabled:opacity-50"
+          onClick={openUpload}
+          className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
         >
           <Upload size={16} /> 上传照片
         </button>
       </div>
-
-      {(!selectedCategory || !selectedAlbum) && (
-        <p className="text-xs text-gray-400 mb-4">请先从下方选择分类和相册，再点击上传</p>
-      )}
 
       {/* Filters */}
       <div className="flex gap-3 mb-6">
@@ -177,11 +181,34 @@ export default function PhotosPage() {
             </div>
 
             <div className="space-y-3">
-              <div className="bg-gray-50 rounded-lg p-3 text-sm">
-                <span className="text-gray-500">上传至：</span>
-                <span className="font-medium text-gray-800">
-                  {config?.categories[selectedCategory]?.title} / {config?.categories[selectedCategory]?.albums?.find(a => a.id === selectedAlbum)?.title}
-                </span>
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-gray-500 mb-1">选择分类</label>
+                  <select
+                    value={uploadCategory}
+                    onChange={e => { setUploadCategory(e.target.value); setUploadAlbum('') }}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
+                  >
+                    <option value="">请选择分类</option>
+                    {categoryKeys.map(key => (
+                      <option key={key} value={key}>{config!.categories[key].title}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex-1">
+                  <label className="block text-xs font-medium text-gray-500 mb-1">选择相册</label>
+                  <select
+                    value={uploadAlbum}
+                    onChange={e => setUploadAlbum(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800"
+                    disabled={!uploadCategory}
+                  >
+                    <option value="">请选择相册</option>
+                    {uploadCategory && config?.categories[uploadCategory]?.albums?.map(album => (
+                      <option key={album.id} value={album.id}>{album.title}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               <div
@@ -211,7 +238,7 @@ export default function PhotosPage() {
               <button onClick={() => { setShowUpload(false); setUploadFiles([]) }} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">取消</button>
               <button
                 onClick={handleUpload}
-                disabled={!selectedCategory || !selectedAlbum || uploadFiles.length === 0 || uploading}
+                disabled={!uploadCategory || !uploadAlbum || uploadFiles.length === 0 || uploading}
                 className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {uploading && <Loader2 size={14} className="animate-spin" />}

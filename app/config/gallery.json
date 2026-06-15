@@ -11,7 +11,7 @@
           "description": "捕捉山脉景观的壮美。",
           "detail": "捕捉山脉景观的原始力量与壮美。",
           "coverImage": "/images/gallery/nature/nature_1.jpg",
-          "photoCount": 4,
+          "photoCount": 5,
           "createdAt": "2024-03-15",
           "photos": [
             {
@@ -37,6 +37,12 @@
               "url": "/images/gallery/nature/nature_4.jpg",
               "title": "山间小径",
               "description": "蜿蜒穿过群山的山间小路"
+            },
+            {
+              "id": "nature-1-1781488546625",
+              "url": "/images/gallery/nature/nature-1/1781488538232-puw3rr.png",
+              "title": "������Ƭ",
+              "description": "�����ϴ�"
             }
           ]
         },
