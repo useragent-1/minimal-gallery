@@ -80,7 +80,13 @@ export async function loadGalleryConfig(): Promise<GalleryConfig> {
     if (kv) {
       try {
         const data = await kv.get('gallery_config')
-        if (data) return JSON.parse(data) as GalleryConfig
+        if (data) {
+          const parsed = JSON.parse(data) as GalleryConfig
+          if (parsed && parsed.categories && Object.keys(parsed.categories).length > 0) {
+            return parsed
+          }
+        }
+        // If config is empty or invalid in KV, reset to default config
         const defaultConfig = await loadDefaultConfig()
         await kv.put('gallery_config', JSON.stringify(defaultConfig))
         return defaultConfig
