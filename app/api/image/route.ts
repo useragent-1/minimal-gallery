@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isEdgeOne } from '@/app/lib/storage'
 
-const PROXY_BASE = process.env.EDGEONE_ORIGIN || 'https://minimal.bbroot.com'
+/**
+ * Image serving endpoint for EdgeOne Blob storage
+ * On EdgeOne, images stored in Blob are served via this endpoint
+ * In local mode, images are served directly from public/ directory
+ */
 
 export async function GET(req: NextRequest) {
   const key = req.nextUrl.searchParams.get('key')
@@ -14,17 +18,16 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    // Use Edge Function proxy to serve image from Blob
-    const proxyUrl = new URL('/api/blob-proxy?action=getImage', PROXY_BASE)
-    proxyUrl.searchParams.set('key', key)
-    const res = await fetch(proxyUrl.toString())
+    const { getStore } = await import('@edgeone/pages-blob')
+    const store = getStore('gallery')
+    const file: any = await store.get(key)
 
-    if (!res.ok) {
+    if (!file) {
       return NextResponse.json({ error: 'Image not found' }, { status: 404 })
     }
 
-    const buffer = await res.arrayBuffer()
-    const contentType = res.headers.get('content-type') || 'image/jpeg'
+    const buffer = await file.arrayBuffer()
+    const contentType = file.type || 'image/jpeg'
 
     return new NextResponse(buffer, {
       headers: {
