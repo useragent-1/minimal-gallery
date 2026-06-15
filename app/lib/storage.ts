@@ -117,10 +117,24 @@ export async function saveGalleryConfig(config: GalleryConfig): Promise<void> {
 
 let blobStore: any = null
 
-async function getBlobStore() {
+export async function getBlobStore() {
   if (!blobStore) {
     const { getStore } = await import('@edgeone/pages-blob')
-    blobStore = getStore('gallery')
+    
+    // In Next.js container runtime on EdgeOne Pages, the platform does not automatically
+    // inject the deploy credentials. We retrieve them from the environment variables.
+    const projectId = process.env.EDGEONE_PROJECT_ID || process.env.PAGES_BLOB_PROJECT_ID
+    const token = process.env.EDGEONE_TOKEN || process.env.PAGES_BLOB_DEPLOY_CREDENTIAL || process.env.EDGEONE_API_TOKEN
+
+    if (projectId && token) {
+      blobStore = getStore({
+        name: 'gallery',
+        projectId: projectId,
+        token: token
+      })
+    } else {
+      blobStore = getStore('gallery')
+    }
   }
   return blobStore
 }
@@ -146,8 +160,8 @@ export async function uploadImage(
     } catch (e: any) {
       // If Blob SDK fails, provide detailed error
       throw new Error(`Blob storage error: ${e.message}. ` +
-        `This usually means PAGES_BLOB_DEPLOY_CREDENTIAL is not configured. ` +
-        `Check EdgeOne Pages console to ensure Blob storage is enabled for this project.`)
+        `Please ensure you have configured 'EDGEONE_PROJECT_ID' and 'EDGEONE_TOKEN' (or 'PAGES_BLOB_DEPLOY_CREDENTIAL') in your EdgeOne Pages project Environment Variables. ` +
+        `This is required because Next.js runs in a Node.js container environment on EdgeOne Pages, which is considered outside of the Edge Functions runtime and requires explicit project ID and token credentials.`)
     }
   }
   // Local mode - save to public directory

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { isEdgeOne } from '@/app/lib/storage'
+import { isEdgeOne, getBlobStore } from '@/app/lib/storage'
 
 function getContentTypeFromKey(key: string): string {
   const ext = key.split('.').pop()?.toLowerCase()
@@ -41,8 +41,7 @@ export async function GET(
   }
 
   try {
-    const { getStore } = await import('@edgeone/pages-blob')
-    const store = getStore('gallery')
+    const store = await getBlobStore()
     const buffer = await store.get(key, { type: 'arrayBuffer' })
 
     if (!buffer) {

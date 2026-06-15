@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { isEdgeOne } from '@/app/lib/storage'
+import { isEdgeOne, getBlobStore } from '@/app/lib/storage'
 
 /**
  * Image serving endpoint for EdgeOne Blob storage
@@ -32,8 +32,7 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const { getStore } = await import('@edgeone/pages-blob')
-    const store = getStore('gallery')
+    const store = await getBlobStore()
     
     // Clean key: strip leading slash if present (EdgeOne Blob keys must not start with /)
     const cleanKey = key.startsWith('/') ? key.slice(1) : key
