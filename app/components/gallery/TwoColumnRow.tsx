@@ -17,7 +17,7 @@ export default function TwoColumnRow({ albums, onAlbumClick, info, hideFirstPhot
     <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-12 gap-8">
       {albums.map((album, index) => (
         <div 
-          key={album.id}
+          key={`${album.id}-${index}`}
           className={`md:col-span-${index === 0 ? '7' : '5'} group relative bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${index === 1 ? 'cursor-pointer' : ''}`}
           onClick={index === 1 ? (e) => onAlbumClick(album, e) : undefined}
         >

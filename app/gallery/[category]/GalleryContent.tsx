@@ -130,7 +130,7 @@ export default function GalleryContent({ category, info }: GalleryContentProps) 
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
               {/* First row - Always Two columns */}
               <TwoColumnRow 
-                albums={albums.slice(0, 2)} 
+                albums={albums.length === 1 ? [albums[0], albums[0]] : albums.slice(0, 2)} 
                 onAlbumClick={handleAlbumClick}
                 info={info}
                 hideFirstPhotoLabels={true}
