@@ -42,21 +42,25 @@ export async function GET(
 
   try {
     const store = await getBlobStore()
+    console.log(`[GET IMAGE] Attempting to fetch key: ${key}`)
     const buffer = await store.get(key, { type: 'arrayBuffer' })
 
     if (!buffer) {
+      console.log(`[GET IMAGE] Key not found in Blob store: ${key}`)
       return NextResponse.json({ error: 'Image not found' }, { status: 404 })
     }
 
     const contentType = getContentTypeFromKey(key)
+    console.log(`[GET IMAGE] Successfully fetched key: ${key}, size: ${buffer.byteLength} bytes, content-type: ${contentType}`)
 
-    return new NextResponse(buffer, {
+    return new NextResponse(Buffer.from(buffer), {
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'public, max-age=31536000, immutable',
       },
     })
   } catch (e: any) {
+    console.error(`[GET IMAGE ERROR] Key: ${key}, Error:`, e)
     return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }
