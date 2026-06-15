@@ -1,18 +1,35 @@
 'use client'
 
 import Link from 'next/link'
-import { useRef } from 'react'
-
-const navItems = [
-  { name: '首页', href: '/' },
-  { name: '自然', href: '/gallery/nature' },
-  { name: '城市', href: '/gallery/urban' },
-  { name: '旅行', href: '/gallery/travel' },
-  { name: '建筑', href: '/gallery/architecture' },
-]
+import { useRef, useState, useEffect } from 'react'
 
 export default function Navbar() {
   const mobileMenuRef = useRef<HTMLInputElement>(null)
+  const [navItems, setNavItems] = useState([
+    { name: '首页', href: '/' },
+    { name: '自然', href: '/gallery/nature' },
+    { name: '城市', href: '/gallery/urban' },
+    { name: '旅行', href: '/gallery/travel' },
+    { name: '建筑', href: '/gallery/architecture' },
+  ])
+
+  useEffect(() => {
+    fetch('/api/gallery')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.categories) {
+          const dynamicItems = [
+            { name: '首页', href: '/' },
+            ...Object.keys(data.categories).map((key) => ({
+              name: data.categories[key].title,
+              href: `/gallery/${key}`,
+            })),
+          ]
+          setNavItems(dynamicItems)
+        }
+      })
+      .catch((err) => console.error('Failed to load dynamic categories:', err))
+  }, [])
 
   const handleMobileMenuClick = () => {
     if (mobileMenuRef.current) {
