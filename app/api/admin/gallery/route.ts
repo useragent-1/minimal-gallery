@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { loadGalleryConfig, saveGalleryConfig } from '@/app/lib/storage'
+import { loadGalleryConfig, saveGalleryConfig, deleteImage } from '@/app/lib/storage'
 import type { GalleryConfig, Album, Photo } from '@/app/types/config'
 
 function checkAuth(req: NextRequest): boolean {
@@ -160,6 +160,10 @@ export async function POST(req: NextRequest) {
       if (!cat) return NextResponse.json({ error: 'Category not found' }, { status: 404 })
       const album = cat.albums.find(a => a.id === albumId)
       if (!album) return NextResponse.json({ error: 'Album not found' }, { status: 404 })
+      const photo = album.photos.find(p => p.id === photoId)
+      if (photo) {
+        await deleteImage(photo.url)
+      }
       album.photos = album.photos.filter(p => p.id !== photoId)
       album.photoCount = album.photos.length
       await saveGalleryConfig(config)

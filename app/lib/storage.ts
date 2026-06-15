@@ -125,6 +125,11 @@ async function getBlobStore() {
   return blobStore
 }
 
+function getStoreKey(url: string): string {
+  // Strip leading slash if present because EdgeOne Blob keys must not start with /
+  return url.startsWith('/') ? url.slice(1) : url
+}
+
 export async function uploadImage(
   fileBuffer: ArrayBuffer,
   filePath: string,
@@ -133,9 +138,11 @@ export async function uploadImage(
   if (isEdgeOne()) {
     try {
       const store = await getBlobStore()
-      const key = `/images/${filePath}`
-      await store.set(key, fileBuffer, { contentType })
-      return key
+      const key = `images/${filePath}`
+      // EdgeOne Blob store.set options only support onlyIfNew and cacheControl.
+      // contentType is not a supported option for store.set in the SDK, so we omit it here.
+      await store.set(key, fileBuffer)
+      return `/images/${filePath}`
     } catch (e: any) {
       // If Blob SDK fails, provide detailed error
       throw new Error(`Blob storage error: ${e.message}. ` +
@@ -157,7 +164,7 @@ export async function deleteImage(imageUrl: string): Promise<void> {
   if (isEdgeOne()) {
     try {
       const store = await getBlobStore()
-      await store.delete(imageUrl)
+      await store.delete(getStoreKey(imageUrl))
     } catch (e) {
       console.warn('Blob delete failed:', e)
     }
@@ -178,3 +185,4 @@ export async function getImageUrl(imageUrl: string): Promise<string> {
   }
   return imageUrl
 }
+

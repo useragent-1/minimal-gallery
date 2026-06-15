@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isEdgeOne } from '@/app/lib/storage'
 
-/**
- * Image serving endpoint for EdgeOne Blob storage
- * On EdgeOne, images stored in Blob are served via this endpoint
- * In local mode, images are served directly from public/ directory
- */
-
 function getContentTypeFromKey(key: string): string {
   const ext = key.split('.').pop()?.toLowerCase()
   switch (ext) {
@@ -21,29 +15,41 @@ function getContentTypeFromKey(key: string): string {
   }
 }
 
-export async function GET(req: NextRequest) {
-  const key = req.nextUrl.searchParams.get('key')
-  if (!key) {
-    return NextResponse.json({ error: 'key parameter required' }, { status: 400 })
-  }
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { path: string[] } }
+) {
+  const filePath = params.path.join('/')
+  const key = `images/gallery/${filePath}`
 
   if (!isEdgeOne()) {
-    return NextResponse.redirect(new URL(key, req.url))
+    // Local mode fallback
+    try {
+      const fs = await import('fs/promises')
+      const path = await import('path')
+      const fullPath = path.join(process.cwd(), 'public', 'images', 'gallery', filePath)
+      const buffer = await fs.readFile(fullPath)
+      const contentType = getContentTypeFromKey(filePath)
+      return new NextResponse(buffer, {
+        headers: {
+          'Content-Type': contentType,
+        },
+      })
+    } catch {
+      return NextResponse.json({ error: 'Image not found locally' }, { status: 404 })
+    }
   }
 
   try {
     const { getStore } = await import('@edgeone/pages-blob')
     const store = getStore('gallery')
-    
-    // Clean key: strip leading slash if present (EdgeOne Blob keys must not start with /)
-    const cleanKey = key.startsWith('/') ? key.slice(1) : key
-    const buffer = await store.get(cleanKey, { type: 'arrayBuffer' })
+    const buffer = await store.get(key, { type: 'arrayBuffer' })
 
     if (!buffer) {
       return NextResponse.json({ error: 'Image not found' }, { status: 404 })
     }
 
-    const contentType = getContentTypeFromKey(cleanKey)
+    const contentType = getContentTypeFromKey(key)
 
     return new NextResponse(buffer, {
       headers: {
@@ -55,4 +61,3 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: e.message }, { status: 500 })
   }
 }
-
