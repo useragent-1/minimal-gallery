@@ -13,6 +13,8 @@ export default function PhotosPage() {
   const [showEdit, setShowEdit] = useState(false)
   const [editingPhoto, setEditingPhoto] = useState<{ catKey: string; albumId: string; photo: any } | null>(null)
   const [editForm, setEditForm] = useState({ title: '', description: '', url: '' })
+  const [editCategory, setEditCategory] = useState('')
+  const [editAlbum, setEditAlbum] = useState('')
   const [uploading, setUploading] = useState(false)
   const [uploadFiles, setUploadFiles] = useState<File[]>([])
   const [uploadCategory, setUploadCategory] = useState('')
@@ -51,11 +53,13 @@ export default function PhotosPage() {
   const openEdit = (catKey: string, albumId: string, photo: any) => {
     setEditingPhoto({ catKey, albumId, photo })
     setEditForm({ title: photo.title, description: photo.description, url: photo.url })
+    setEditCategory(catKey)
+    setEditAlbum(albumId)
     setShowEdit(true)
   }
 
   const handleEditSave = async () => {
-    if (!editingPhoto) return
+    if (!editingPhoto || !editAlbum) return
     await adminFetch('updatePhoto', {
       categoryKey: editingPhoto.catKey,
       albumId: editingPhoto.albumId,
@@ -63,6 +67,8 @@ export default function PhotosPage() {
       title: editForm.title,
       description: editForm.description,
       url: editForm.url,
+      targetCategoryKey: editCategory,
+      targetAlbumId: editAlbum,
     })
     setShowEdit(false)
     showToast('照片已更新')
@@ -266,6 +272,39 @@ export default function PhotosPage() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-800 text-sm"
                 />
               </div>
+              <div className="flex gap-3">
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">分类</label>
+                  <select
+                    value={editCategory}
+                    onChange={e => {
+                      const nextCat = e.target.value
+                      setEditCategory(nextCat)
+                      const firstAlbumId = config?.categories[nextCat]?.albums?.[0]?.id || ''
+                      setEditAlbum(firstAlbumId)
+                    }}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800 bg-white"
+                  >
+                    {categoryKeys.map(key => (
+                      <option key={key} value={key}>{config!.categories[key].title}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="flex-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">相册</label>
+                  <select
+                    value={editAlbum}
+                    onChange={e => setEditAlbum(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-800 bg-white"
+                    disabled={!editCategory}
+                  >
+                    <option value="">请选择相册</option>
+                    {editCategory && config?.categories[editCategory]?.albums?.map(album => (
+                      <option key={album.id} value={album.id}>{album.title}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">描述</label>
                 <textarea
@@ -287,7 +326,13 @@ export default function PhotosPage() {
             </div>
             <div className="flex gap-3 mt-6">
               <button onClick={() => setShowEdit(false)} className="flex-1 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50">取消</button>
-              <button onClick={handleEditSave} className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700">保存</button>
+              <button 
+                onClick={handleEditSave} 
+                disabled={!editAlbum}
+                className="flex-1 py-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 disabled:opacity-50"
+              >
+                保存
+              </button>
             </div>
           </div>
         </div>

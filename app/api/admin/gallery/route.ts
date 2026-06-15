@@ -140,16 +140,57 @@ export async function POST(req: NextRequest) {
     }
 
     case 'updatePhoto': {
-      const { categoryKey, albumId, photoId, title, description, url } = body
+      const { categoryKey, albumId, photoId, title, description, url, targetCategoryKey, targetAlbumId } = body
       const cat = config.categories[categoryKey]
       if (!cat) return NextResponse.json({ error: 'Category not found' }, { status: 404 })
       const album = cat.albums.find(a => a.id === albumId)
       if (!album) return NextResponse.json({ error: 'Album not found' }, { status: 404 })
-      const photo = album.photos.find(p => p.id === photoId)
-      if (!photo) return NextResponse.json({ error: 'Photo not found' }, { status: 404 })
+      const photoIndex = album.photos.findIndex(p => p.id === photoId)
+      if (photoIndex === -1) return NextResponse.json({ error: 'Photo not found' }, { status: 404 })
+      
+      const photo = album.photos[photoIndex]
+      const oldUrl = photo.url
       if (title !== undefined) photo.title = title
       if (description !== undefined) photo.description = description
       if (url !== undefined) photo.url = url
+
+      // If target category or target album is different, move the photo
+      const shouldMove = (targetCategoryKey && targetCategoryKey !== categoryKey) || 
+                         (targetAlbumId && targetAlbumId !== albumId)
+                         
+      if (shouldMove) {
+        const destCatKey = targetCategoryKey || categoryKey
+        const destAlbumId = targetAlbumId || albumId
+        
+        const destCat = config.categories[destCatKey]
+        if (!destCat) return NextResponse.json({ error: 'Target category not found' }, { status: 404 })
+        const destAlbum = destCat.albums.find(a => a.id === destAlbumId)
+        if (!destAlbum) return NextResponse.json({ error: 'Target album not found' }, { status: 404 })
+        
+        // Remove from source album
+        album.photos.splice(photoIndex, 1)
+        album.photoCount = album.photos.length
+        
+        // If the moved photo (under its old URL) was the cover image of the source album, update it
+        if (album.coverImage === oldUrl) {
+          album.coverImage = album.photos[0]?.url || ''
+        }
+        
+        // Add to destination album
+        destAlbum.photos.push(photo)
+        destAlbum.photoCount = destAlbum.photos.length
+        
+        // If destination album doesn't have a cover image, set it
+        if (!destAlbum.coverImage) {
+          destAlbum.coverImage = photo.url
+        }
+      } else {
+        // If photo URL changed and it was the cover image, update it in the album
+        if (album.coverImage === oldUrl && url !== undefined) {
+          album.coverImage = url
+        }
+      }
+
       await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
@@ -163,9 +204,13 @@ export async function POST(req: NextRequest) {
       const photo = album.photos.find(p => p.id === photoId)
       if (photo) {
         await deleteImage(photo.url)
+        album.photos = album.photos.filter(p => p.id !== photoId)
+        album.photoCount = album.photos.length
+        // If the deleted photo was the cover image, update it
+        if (album.coverImage === photo.url) {
+          album.coverImage = album.photos[0]?.url || ''
+        }
       }
-      album.photos = album.photos.filter(p => p.id !== photoId)
-      album.photoCount = album.photos.length
       await saveGalleryConfig(config)
       return NextResponse.json({ success: true })
     }
