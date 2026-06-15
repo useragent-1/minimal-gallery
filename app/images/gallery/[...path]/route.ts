@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isEdgeOne, getBlobStore } from '@/app/lib/storage'
 
+export const runtime = 'edge'
+
 function getContentTypeFromKey(key: string): string {
   const ext = key.split('.').pop()?.toLowerCase()
   switch (ext) {
@@ -25,8 +27,10 @@ export async function GET(
   if (!isEdgeOne()) {
     // Local mode fallback
     try {
-      const fs = await import('fs/promises')
-      const path = await import('path')
+      const fsName = 'fs/promises'
+      const pathName = 'path'
+      const fs = await import(fsName)
+      const path = await import(pathName)
       const fullPath = path.join(process.cwd(), 'public', 'images', 'gallery', filePath)
       const buffer = await fs.readFile(fullPath)
       const contentType = getContentTypeFromKey(filePath)

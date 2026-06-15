@@ -43,14 +43,22 @@ function getKV(): any {
 
 let localConfigCache: GalleryConfig | null = null
 
+// Hides Node.js native modules from the Edge Runtime bundler
+async function getFsAndPath() {
+  const fsName = 'fs/promises'
+  const pathName = 'path'
+  const fs = await import(fsName)
+  const path = await import(pathName)
+  return { fs, path }
+}
+
 async function loadDefaultConfig(): Promise<GalleryConfig> {
   const mod = await import('@/app/config/gallery.json')
   return JSON.parse(JSON.stringify(mod.default)) as GalleryConfig
 }
 
 async function loadLocalConfig(): Promise<GalleryConfig> {
-  const fs = await import('fs/promises')
-  const path = await import('path')
+  const { fs, path } = await getFsAndPath()
   const configPath = path.join(process.cwd(), 'app', 'config', 'gallery.json')
   try {
     const raw = await fs.readFile(configPath, 'utf-8')
@@ -61,8 +69,7 @@ async function loadLocalConfig(): Promise<GalleryConfig> {
 }
 
 async function saveLocalConfig(config: GalleryConfig): Promise<void> {
-  const fs = await import('fs/promises')
-  const path = await import('path')
+  const { fs, path } = await getFsAndPath()
   const configPath = path.join(process.cwd(), 'app', 'config', 'gallery.json')
   await fs.writeFile(configPath, JSON.stringify(config, null, 2), 'utf-8')
 }
@@ -165,8 +172,7 @@ export async function uploadImage(
     }
   }
   // Local mode - save to public directory
-  const fs = await import('fs/promises')
-  const path = await import('path')
+  const { fs, path } = await getFsAndPath()
   const fullPath = path.join(process.cwd(), 'public', 'images', filePath)
   const dir = path.dirname(fullPath)
   await fs.mkdir(dir, { recursive: true })
@@ -185,8 +191,7 @@ export async function deleteImage(imageUrl: string): Promise<void> {
     return
   }
   // Local mode
-  const fs = await import('fs/promises')
-  const path = await import('path')
+  const { fs, path } = await getFsAndPath()
   const fullPath = path.join(process.cwd(), 'public', imageUrl)
   try {
     await fs.unlink(fullPath)
