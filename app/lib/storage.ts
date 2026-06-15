@@ -55,27 +55,27 @@ function getKV(): any {
 
 const PROXY_BASE = process.env.EDGEONE_ORIGIN || 'https://minimal.bbroot.com'
 
-async function proxyCall(action: string, options: {
+async function proxyCall(action: string, options?: {
   method?: string
   body?: any
   formData?: FormData
   key?: string
 }): Promise<any> {
   const url = new URL(`/api/blob-proxy?action=${action}`, PROXY_BASE)
-  if (options.key) url.searchParams.set('key', options.key)
+  if (options?.key) url.searchParams.set('key', options.key)
 
   const headers: Record<string, string> = {}
   let body: any = undefined
 
-  if (options.formData) {
+  if (options?.formData) {
     body = options.formData
-  } else if (options.body) {
+  } else if (options?.body) {
     headers['Content-Type'] = 'application/json'
     body = JSON.stringify(options.body)
   }
 
   const res = await fetch(url.toString(), {
-    method: options.method || 'POST',
+    method: options?.method || 'POST',
     headers,
     body,
   })
