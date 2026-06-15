@@ -2,12 +2,11 @@
   "name": "minimal-gallery",
   "framework": "nextjs",
   "build": {
-    "command": "npm run build && node -e \"const fs=require('fs'),p=require('path');function walk(d){fs.readdirSync(d).forEach(f=>{const fp=p.join(d,f);fs.statSync(fp).isDirectory()?walk(fp):fp.endsWith('.js')&&fs.readFileSync(fp,'utf8').includes('{{PAGES_BLOB_DEPLOY_CREDENTIAL}}')&&fs.writeFileSync(fp,fs.readFileSync(fp,'utf8').replace(/\\{\\{PAGES_BLOB_DEPLOY_CREDENTIAL\\}\\}/g,process.env.PAGES_BLOB_DEPLOY_CREDENTIAL||''))})} walk('.next/standalone')\"",
+    "command": "npm run build",
     "output": ".next/standalone"
   },
   "env": {
-    "ADMIN_PASSWORD": "@ADMIN_PASSWORD",
-    "PAGES_BLOB_DEPLOY_CREDENTIAL": "@PAGES_BLOB_DEPLOY_CREDENTIAL"
+    "ADMIN_PASSWORD": "@ADMIN_PASSWORD"
   },
   "bindings": {
     "kv": {
