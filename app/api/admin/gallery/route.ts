@@ -215,6 +215,40 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
+    case 'deduplicatePhotos': {
+      let totalRemoved = 0
+      for (const catKey of Object.keys(config.categories)) {
+        const cat = config.categories[catKey]
+        if (!cat || !cat.albums) continue
+        for (const album of cat.albums) {
+          if (!album.photos) continue
+          const uniqueUrls = new Set<string>()
+          const uniquePhotos: Photo[] = []
+          const oldPhotoCount = album.photos.length
+          
+          for (const photo of album.photos) {
+            if (!uniqueUrls.has(photo.url)) {
+              uniqueUrls.add(photo.url)
+              uniquePhotos.push(photo)
+            }
+          }
+          
+          if (uniquePhotos.length < oldPhotoCount) {
+            totalRemoved += (oldPhotoCount - uniquePhotos.length)
+            album.photos = uniquePhotos
+            album.photoCount = uniquePhotos.length
+            
+            // Validate and update cover image if it was one of the duplicates removed
+            if (album.coverImage && !uniqueUrls.has(album.coverImage)) {
+              album.coverImage = uniquePhotos[0]?.url || ''
+            }
+          }
+        }
+      }
+      await saveGalleryConfig(config)
+      return NextResponse.json({ success: true, removedCount: totalRemoved })
+    }
+
     default:
       return NextResponse.json({ error: 'Unknown action' }, { status: 400 })
   }

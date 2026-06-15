@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { adminGetGallery, adminFetch, adminUploadImage } from '@/app/utils/api'
 import type { GalleryConfig, Album } from '@/app/types/config'
-import { Plus, Pencil, Trash2, X, Upload, Loader2, CheckCircle } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, Upload, Loader2, CheckCircle, Sparkles } from 'lucide-react'
 
 export default function PhotosPage() {
   const [config, setConfig] = useState<GalleryConfig | null>(null)
@@ -16,6 +16,7 @@ export default function PhotosPage() {
   const [editCategory, setEditCategory] = useState('')
   const [editAlbum, setEditAlbum] = useState('')
   const [uploading, setUploading] = useState(false)
+  const [deduplicating, setDeduplicating] = useState(false)
   const [uploadFiles, setUploadFiles] = useState<File[]>([])
   const [uploadCategory, setUploadCategory] = useState('')
   const [uploadAlbum, setUploadAlbum] = useState('')
@@ -29,6 +30,20 @@ export default function PhotosPage() {
 
   const load = () => adminGetGallery().then(setConfig).catch(() => {})
   useEffect(() => { load() }, [])
+
+  const handleDeduplicate = async () => {
+    if (!confirm('确定要为所有相册中的重复照片进行去重处理吗？（将保留每张图片在相册中的第一张，删除其它重复项）')) return
+    setDeduplicating(true)
+    try {
+      const result = await adminFetch('deduplicatePhotos', {})
+      showToast(`去重成功！已删除 ${result.removedCount} 张重复照片。`)
+      load()
+    } catch (e) {
+      alert('去重失败：' + (e as Error).message)
+    } finally {
+      setDeduplicating(false)
+    }
+  }
 
   const categoryKeys = config ? Object.keys(config.categories) : []
   const albums: { catKey: string; album: Album }[] = []
@@ -118,12 +133,22 @@ export default function PhotosPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">照片管理</h1>
-        <button
-          onClick={openUpload}
-          className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
-        >
-          <Upload size={16} /> 上传照片
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={handleDeduplicate}
+            disabled={deduplicating}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm disabled:opacity-50"
+          >
+            {deduplicating ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
+            {deduplicating ? '正在去重...' : '照片去重'}
+          </button>
+          <button
+            onClick={openUpload}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm"
+          >
+            <Upload size={16} /> 上传照片
+          </button>
+        </div>
       </div>
 
       {/* Filters */}
